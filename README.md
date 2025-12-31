@@ -1,30 +1,30 @@
-# Spirolateral Curves in Typescript
+# Spirolateral Curve Generator
 
 An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve generator webapp.
 
 ## Project goals
 
-Although a visual project, the purpose is a familiarization with typescript and it's environment. As such, the priorities are:
+Although a visual project, the purpose is a familiarization with typescript and its environment. As such, the priorities are:
 
-- Document the project and tools as starting point for future personal project: [typescript.md]
+- Document the project and tools as starting point for future personal project: [typescript.md](typescript.md)
  - Stick to typescript, avoid javascript where possible.
  - Apply coding best practices and conventions, notably:
     - Reference configuration of npm.
     - A popular linter configuration.
     - Unit tests.
  - Avoid libraries / third party dependencies doing too much heavy lifting (including build dependencies - but with exception to what is needed for a best-practice build)
- - Stick to popular tools, document tool selection and configuration: [environment.md]
+ - Stick to popular tools, document tool selection and configuration: [environment.md](environment.md)
     - VSCode
     - IDE plugins
     - Node / npm plugins
 
- > The remainder of this page documents the spriolateral curve context and software design.
+ > The remainder of this page documents the spriolateral curve context and the elicited software design.
 
-## Graphics
+## Spirolateral Curves
 
-This program generates *spirolateral curves*, which are a special case of *turtle graphics*. 
+This program generates *spirolateral curves*, which can be generated using a *turtle geometry model*. 
 
-### Turtle geometry
+### Turtle geometry model
 
 Imagine a turtle moving slowly forward, with a pen attached to its belly. Let's further consider that the turtle can only perform two actions: [^1]
  * Move straight forward, for a given distance.
@@ -34,7 +34,7 @@ If our turtle keeps repeating the above two actions, we can trace the path it to
 
 Even without a *real* turtle, we can attempt to generate the trace it's path, using a simple simulation.
 
-### Spirolateral curves
+### Motives
 
 Spirolateral curves are a special case of turtle graphics, i.e. they can be realized using a turtle graphic simulation.
 
@@ -48,6 +48,8 @@ In contrast to general turtle graphics, the turtle's actions are not arbitrary, 
 
 ## Software design
 
+This section details how concepts needed to generate and visualize spirolateral curves are translated to software components and behaviour.
+
 ### Turtle terminology
 
 Throughout the implementation, we'll use the following terminology:
@@ -60,30 +62,35 @@ Throughout the implementation, we'll use the following terminology:
 
  * `angle`: degrees by which the turtle will turn right after any move (including after completed motives).
 
-### Components and information flow
+### Components and behaviour
 
 ```mermaid
 ---
-title: Turtle Graphic Generator
+title: Spirolateral Curve Generator
 ---
 classDiagram
-    class VerticeGenerator{
-        +generateVertices(turtle):[Vertice]
+    class CurveGenerator{
+        +generateCurve(turtle):Curve
     }
 
     class Turtle{
         +double heading
-        +int counter
+        +int angle
+        +int amount
+        -int counter
         +Turtle(amount, angle)
-        +getPosition()
-        +getOrientation()
+        +advance()
+        +getPositionX():int
+        +getPositionY():int
+        +getOrientation():int
     }
 
-    class TrailDescription {
+    class Curve {
         +int minX
         +int minY
         +int maxX
         +int maxY
+        +getVertices(): [Vertice]
     }
 
     class Vertice{
@@ -91,30 +98,29 @@ classDiagram
         +int startY
         +int endX
         +int endY
-        +String colour
     }
 
-    class VerticeSeriesProcessor{
-        +process([Vertice]):void
+    class CurveProcessor{
+        +process(curve):void
     }
 
 
-     VerticeSeriesProcessor <|-- SvgStringGenerator
-     VerticeSeriesProcessor <|-- SvgBuilder
-     VerticeGenerator ..> Turtle : Lets turtle run in motives
-     VerticeGenerator ..> TrailDescription : Produces trail description
-     VerticeSeriesProcessor ..> TrailDescription : Consumes trail description
-     TrailDescription *--> "1..*" Vertice
+     CurveProcessor <|-- SvgStringBuilder
+     CurveProcessor <|-- SvgObjectBuilder
+     CurveGenerator ..> Turtle : Lets turtle run in motives
+     CurveGenerator ..> Curve : Produces description of spirolateral curve
+     CurveProcessor ..> Curve : Consumes description of spirolateral curve
+     Curve *--> "1..*" Vertice : Spirolateral curve is composed of vertices
 ```
 
- > Main components of the *Turtle Typescript* project.
+ > Project components and relations. A `(Spirolateral) Curve`  object is first produced, then consumed for visual presentation.
 
 The main control flow consists of two phases:
 
-1. A `VerticeGenerator` creates a `Turtle` instance to produce a series of `Vertice` objects.
+1. **Generate** a spirolateral curve: A `VerticeGenerator` creates a `Turtle` instance to produce a series of `Vertice` objects.
    * The `Turtle` object embodies the a displacement strategy based on two parameters. The image ultimately generated is subject to the provided parameters (see previous section, ["*Graphics*"](#Graphics)).
    * Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertice`, which will be eventually visualized.
-2. A `VerticeSeriesProcessor` afterwards consumes a series of `Vertices`, to directly or indirectly visualize the total path taken by the `Turtle`.
+2. **Process** a spirolateral curve: A `VerticeSeriesProcessor` afterwards consumes a series of `Vertices`, to directly or indirectly visualize the total path taken by the `Turtle`.
    * The `SvgStringGenerator` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
    * The `SvgObjectBuilder` does not operate on String level, but constructs or modifies an SVG object, for dynamic visualization, i.e. instant re-rendering on `Turtle` parameter changes.
 
