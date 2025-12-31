@@ -117,11 +117,11 @@ classDiagram
 
 The main control flow consists of two phases:
 
-1. **Generate** a spirolateral curve: A `VerticeGenerator` creates a `Turtle` instance to produce a series of `Vertice` objects.
-   * The `Turtle` object embodies the a displacement strategy based on two parameters. The image ultimately generated is subject to the provided parameters (see previous section, ["*Graphics*"](#Graphics)).
+1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to produce `Curve` object (composed of a series of `Vertice` objects).
+   * The `Turtle` object embodies the a displacement strategy based on two parameters. The image ultimately generated is subject to the provided parameters (see previous section, ["*Graphics*"](#spirolateral-curves)).
    * Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertice`, which will be eventually visualized.
-2. **Process** a spirolateral curve: A `VerticeSeriesProcessor` afterwards consumes a series of `Vertices`, to directly or indirectly visualize the total path taken by the `Turtle`.
-   * The `SvgStringGenerator` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
+2. **Process** a spirolateral curve: A `CurveProcessor` afterwards consumes the `Curve` object, to directly or indirectly visualize the total path taken by the `Turtle`.
+   * The `SvgStringBuilder` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
    * The `SvgObjectBuilder` does not operate on String level, but constructs or modifies an SVG object, for dynamic visualization, i.e. instant re-rendering on `Turtle` parameter changes.
 
 ## Challenges and solutions
@@ -140,7 +140,7 @@ To overcome the issue, we simply check on each completed motive, wether the turt
 
  Shape and size of the turtle's path vastly differ, depending on the two initial parameters (angle, amount).
 
- A bullet proof strategy, is to first generate the series of `Vertice`s, starting at the origin, and keeping track of lowest and highest score throughout generation. The boundaries can be used afterwards as input for the `VerticeSeriesProcessor` instance, if centering or scaling is needed.
+ A bullet proof strategy, is to first generate Curve object (containing a series of `Vertice`s), and keeping track of lowest and highest positions encountered within a `Curve` object. These boundaries can be used afterwards as input for the `VerticeSeriesProcessor` instance, if centering or scaling is needed.
 
 ## Author
 
