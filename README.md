@@ -1,4 +1,4 @@
-# Spirolateral Curve Generator
+# Spirolateral Curve Viewer
 
 An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve generator webapp.
 

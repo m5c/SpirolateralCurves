@@ -4,6 +4,9 @@
 ### Javascript ###
 src/**/*.js
 
+### VS Code ###
+.vscode
+
 ### macOS ###
 # General
 .DS_Store

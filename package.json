@@ -1,0 +1,21 @@
+{
+  "name": "spirolateralcurves",
+  "version": "1.0.0",
+  "description": "An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve generator webapp.",
+  "main": "src/SpirolateralCurveGenerator.js",
+  "scripts": {
+    "exec": "tsc src/*.ts; node ./src/SpirolateralCurveGenerator.js; rm src/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m5c/SpirolateralCurves.git"
+  },
+  "keywords": [],
+  "author": "Maximilian Schiedermeier",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/m5c/SpirolateralCurves/issues"
+  },
+  "homepage": "https://github.com/m5c/SpirolateralCurves#readme"
+}
