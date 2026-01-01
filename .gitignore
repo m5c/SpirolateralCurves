@@ -4,6 +4,9 @@
 ### Javascript ###
 src/**/*.js
 
+### Node ###
+node_modules
+
 ### VS Code ###
 .vscode
 

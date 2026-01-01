@@ -70,16 +70,16 @@ title: Spirolateral Curve Generator
 ---
 classDiagram
     class CurveGenerator{
-        +generateCurve(turtle):Curve
+        +generateCurve(angle, amount):Curve
     }
 
     class Turtle{
-        +double heading
-        +int angle
-        +int amount
-        -int counter
-        +Turtle(amount, angle)
-        +advance()
+        -double heading
+        -double positionX
+        -double positionY
+        +Turtle(initX, initY, initHeading)
+        +advance(distance)
+        +turnClockwise(angle)
         +getPositionX():int
         +getPositionY():int
         +getOrientation():int
@@ -107,7 +107,7 @@ classDiagram
 
      CurveProcessor <|-- SvgStringBuilder
      CurveProcessor <|-- SvgObjectBuilder
-     CurveGenerator ..> Turtle : Lets turtle run in motives
+     CurveGenerator ..> Turtle : generateCurve lets turtle advance and turn in motives
      CurveGenerator ..> Curve : Produces description of spirolateral curve
      CurveProcessor ..> Curve : Consumes description of spirolateral curve
      Curve *--> "1..*" Vertice : Spirolateral curve is composed of vertices
@@ -117,8 +117,8 @@ classDiagram
 
 The main control flow consists of two phases:
 
-1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to produce `Curve` object (composed of a series of `Vertice` objects).
-   * The `Turtle` object embodies the a displacement strategy based on two parameters. The image ultimately generated is subject to the provided parameters (see previous section, ["*Graphics*"](#spirolateral-curves)).
+1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to incrementally produce `Curve` object (composed of a series of `Vertice` objects).
+   * The `Turtle` object embodies only heading and position. The displacement strategy (how far to advance, angle to turn) is encoded in the `CurveGenerator`, which simply invokes the `Turtle`s corresponding `advance` and `turn` methods (see previous section, ["*Graphics*"](#spirolateral-curves)).
    * Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertice`, which will be eventually visualized.
 2. **Process** a spirolateral curve: A `CurveProcessor` afterwards consumes the `Curve` object, to directly or indirectly visualize the total path taken by the `Turtle`.
    * The `SvgStringBuilder` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
