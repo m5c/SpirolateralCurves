@@ -1,14 +1,46 @@
+/**
+ * Implements a Turtle for basic turtle graphics.
+ * A turtle is "stupid", it does not implement an algorithm, only state: where it is heading, and where it is (x / y).
+ */
 class Turtle {
   heading: number;
-  x: number;
-  y: number;
+  positionX: number;
+  positionY: number;
 
-  constructor(heading: number, x: number, y: number) {
+  /**
+   * Constructor.
+   * @param heading direction into which the turtle is pointing at start-up, offset in degrees clockwise starting north.
+   * @param positionX x value of turtle start position, usually 0.
+   * @param positionY y value of turtle start position, usually 0.
+   */
+  constructor(heading: number, positionX: number, positionY: number) {
     this.heading = heading;
-    this.x = x;
-    this.y = y;
+    this.positionX = positionX;
+    this.positionY = positionY;
+  }
+
+  /**
+   * Moves the turtle forward, in whatever direct it is currently heading.
+   * @param distance as the amount of units to move forward.
+   */
+  advance(distance: number) {
+    // Convert degrees to radians
+    const radians = (this.heading * Math.PI) / 180;
+
+    // Update position new position
+    this.positionX = this.positionX + Math.sin(radians) * distance;
+    this.positionY = this.positionY - Math.cos(radians) * distance;
+  }
+
+  /**
+   * Turns the turtle clockwise by the provided amount of degrees.
+   * @param angle as degrees.
+   */
+  turnClockwise(angle: number) {
+    this.heading = this.heading + angle;
+    // Remainder in javascript can be negative, so we wrap it with an additional add and mod.
+    this.heading = ((this.heading % 360) + 360) % 360;
   }
 }
 
 export { Turtle };
-

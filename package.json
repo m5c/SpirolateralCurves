@@ -5,7 +5,8 @@
   "main": "src/SpirolateralCurveGenerator.js",
   "scripts": {
     "lint": "npx eslint src",
-    "exec": "tsc src/*.ts; node ./src/SpirolateralCurveGenerator.js; rm src/*.js"
+    "test": "jest",
+    "exec": "npx eslint src; jest; tsc src/*.ts; node ./src/SpirolateralCurveGenerator.js; rm src/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +25,13 @@
     "@eslint/js": "^9.39.2",
     "@eslint/json": "^0.14.0",
     "@eslint/markdown": "^7.5.1",
+    "@types/jest": "^30.0.0",
     "eslint": "^9.39.2",
+    "eslint-plugin-jsdoc": "^61.5.0",
     "globals": "^16.5.0",
-    "typescript-eslint": "^8.51.0",
-    "jiti": "^2.6.1"
+    "jest": "^30.2.0",
+    "jiti": "^2.6.1",
+    "ts-jest": "^29.4.6",
+    "typescript-eslint": "^8.51.0"
   }
 }
