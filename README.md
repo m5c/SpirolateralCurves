@@ -1,6 +1,6 @@
 # Spirolateral Curve Viewer
 
-An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve generator webapp.
+An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve viewer webapp.
 
 ## Project goals
 
@@ -91,10 +91,10 @@ classDiagram
         +int minY
         +int maxX
         +int maxY
-        +getVertices(): [Vertice]
+        +getVertices(): [Vertex]
     }
 
-    class Vertice{
+    class Vertex{
         +int startX
         +int startY
         +int endX
@@ -111,16 +111,16 @@ classDiagram
      CurveGenerator ..> Turtle : generateCurve lets turtle advance and turn in motives
      CurveGenerator ..> Curve : Produces description of spirolateral curve
      CurveProcessor ..> Curve : Consumes description of spirolateral curve
-     Curve *--> "1..*" Vertice : Spirolateral curve is composed of vertices
+     Curve *--> "1..*" Vertex : Spirolateral curve is composed of vertices
 ```
 
 > Project components and relations. A `(Spirolateral) Curve` object is first produced, then consumed for visual presentation.
 
 The main control flow consists of two phases:
 
-1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to incrementally produce `Curve` object (composed of a series of `Vertice` objects).
+1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to incrementally produce `Curve` object (composed of a series of `Vertex` objects).
    - The `Turtle` object embodies only heading and position. The displacement strategy (how far to advance, angle to turn) is encoded in the `CurveGenerator`, which simply invokes the `Turtle`s corresponding `advance` and `turn` methods (see previous section, ["_Graphics_"](#spirolateral-curves)).
-   - Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertice`, which will be eventually visualized.
+   - Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertex`, which will be eventually visualized.
 2. **Process** a spirolateral curve: A `CurveProcessor` afterwards consumes the `Curve` object, to directly or indirectly visualize the total path taken by the `Turtle`.
    - The `SvgStringBuilder` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
    - The `SvgObjectBuilder` does not operate on String level, but constructs or modifies an SVG object, for dynamic visualization, i.e. instant re-rendering on `Turtle` parameter changes.
@@ -142,7 +142,7 @@ To overcome the issue, we simply check on each completed motive, wether the turt
 
 Shape and size of the turtle's path vastly differ, depending on the two initial parameters (angle, amount).
 
-A bullet proof strategy, is to first generate Curve object (containing a series of `Vertice`s), and keeping track of lowest and highest positions encountered within a `Curve` object. These boundaries can be used afterwards as input for the `VerticeSeriesProcessor` instance, if centering or scaling is needed.
+A bullet proof strategy, is to first generate Curve object (containing a series of `Vertex`s), and keeping track of lowest and highest positions encountered within a `Curve` object. These boundaries can be used afterwards as input for the `CurveProcessor` instance, if centering or scaling is needed.
 
 ## Author
 

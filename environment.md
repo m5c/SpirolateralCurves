@@ -110,27 +110,18 @@ Tip: Define script, that invokes `npx`, e.g.:
 - Create a new directory `tests`
 - Add individual tests using the naming convention `foo.test.ts`
 - Install jest:
+
   - Jest itself: `npm install --save-dev jest ts-jest @types/jest`
   - Jest typescript support: `npm install ts-jest --save-dev`
   - Jest type support: `npm install @types/jest --save-dev`
-- Jest also has a config file, it can be initialized with: `npx ts-jest config:init` => `jest.config.js`:
+
+- Finally, configure jest via `package.json` to handle the sources as typescript:
 
 ```json
-  import { createDefaultPreset } from "ts-jest";
-
-  const tsJestTransformCfg = createDefaultPreset().transform;
-
-  /** @type {import("jest").Config} **/
-  export const testEnvironment = "node";
-  export const transform = {
-    ...tsJestTransformCfg,
-  };
-```
-
-- Configure npm to know about the tests, by adding a `test` script calling `jest` to the `scripts` field:
-
-```json
-...jest
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
 ```
 
 ### Test syntax
@@ -138,11 +129,14 @@ Tip: Define script, that invokes `npx`, e.g.:
 Import the function you want to test, then define what is expected:
 
 ```typescript
-import { advance } from "../src/turtle";
+import { Turtle } from "../src/Turtle";
 
-describe("testing index file", () => {
-  test("empty string should result in zero", () => {
-    expect(add("")).toBe(0);
+describe("testing if advance correctly displaces north facing turtle", () => {
+  test("turtle at expected x/y position", () => {
+    const turtle = new Turtle(0, 0, 0);
+    turtle.advance(1);
+    expect(turtle.getPositionX()).toBe(0);
+    expect(turtle.getPositionY()).toBe(-1);
   });
 });
 ```
