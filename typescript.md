@@ -24,6 +24,10 @@ constructor(heading: number, x: number, y: number) {
 }
 ```
 
+## Secrecy
+
+`private`, `protected`, and `#` (enforcing private at runtime, not just compile time) *are* supported. :)
+
 ## Launchers
 
  * Any typescript file can be a launcher.

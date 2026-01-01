@@ -3,9 +3,9 @@
  * A turtle is "stupid", it does not implement an algorithm, only state: where it is heading, and where it is (x / y).
  */
 class Turtle {
-  heading: number;
-  positionX: number;
-  positionY: number;
+  private heading: number;
+  private positionX: number;
+  private positionY: number;
 
   /**
    * Constructor.
@@ -40,6 +40,30 @@ class Turtle {
     this.heading = this.heading + angle;
     // Remainder in javascript can be negative, so we wrap it with an additional add and mod.
     this.heading = ((this.heading % 360) + 360) % 360;
+  }
+
+  /**
+   * Getter for turtle's orientation.
+   * @returns turtle's heading offset in clockwise degrees from north.
+   */
+  getHeading() {
+    return this.heading;
+  }
+
+  /**
+   * Getter for turtles horizontal position.
+   * @returns x position.
+   */
+  getPositionX() {
+    return this.positionX;
+  }
+
+  /**
+   * Getter for turtles vertical position.
+   * @returns y position.
+   */
+  getPositionY() {
+    return this.positionY;
   }
 }
 

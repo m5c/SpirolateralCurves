@@ -33,9 +33,10 @@ export default defineConfig([
         {
           // Require comments for classes, methods, and constructors
           contexts: [
+            "ArrowFunctionExpression",
             "ClassDeclaration",
             "FunctionDeclaration",
-            'MethodDefinition[kind="constructor"]',
+            'MethodDefinition',
           ],
         },
       ],
