@@ -1,6 +1,6 @@
 # Spirolateral Curves
 
-An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve viewer webapp.
+An exploratory project, to learn and document typescript practices and tools, on the example of [a spirolateral curve viewer webapp](https://m5c.github.io/SpirolateralCurves/index.html).
 
 <img src="eye-candy/README-slc-0153-0005.svg" width="60%" style="display: block; margin-left: 20%; margin-right: auto;">
 
