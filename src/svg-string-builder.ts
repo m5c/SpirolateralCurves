@@ -1,7 +1,7 @@
-import { Curve } from "./Curve";
-import { CurveProcessor } from "./CurveProcessor";
+import { Curve } from "./curve";
+import { CurveProcessor } from "./curve-processor";
 import * as fs from "fs";
-import { Vertex } from "./Vertex";
+import { Vertex } from "./vertex";
 
 /**
  * Static svg file builder. Consumes curves and builds an svg by string concatenation, and persists the outcome on disk
@@ -20,10 +20,28 @@ class SvgStringBuilder implements CurveProcessor {
     process(curve: Curve): void {
         // Compute a little margin to the sides of the generated svg, so there's no cropping (vertices have a width)
 
-        // Build full SVG string
+        // Build full SVG preamble string
         let svgString = this.preambleStart + this.buildViewBox(curve) + this.preambleEnd;
+
+        // Prepare gradient definitions (as many as there are vertices)
+        // Gradients rotate a full circle (360) degrees in HSL colour space.
+        svgString = svgString + "<defs>";
+        let gradientStart: number = 0;
         for (let i = 0; i < curve.getVertexAmount(); i++) {
-            svgString = svgString + this.wrapVertexForSvg(curve.getVertex(i), curve.getHeight());
+            const gradientEnd: number = (360 * i) / curve.getVertexAmount();
+            svgString =
+                svgString +
+                `<linearGradient id="grad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+            </linearGradient>`;
+            gradientStart = gradientEnd;
+        }
+        svgString = svgString + "</defs>";
+
+        // Add all vertices
+        for (let i = 0; i < curve.getVertexAmount(); i++) {
+            svgString = svgString + this.wrapVertexForSvg(curve.getVertex(i), curve.getHeight(), i);
         }
         svgString = svgString + this.coda;
 
@@ -62,13 +80,13 @@ class SvgStringBuilder implements CurveProcessor {
      * @param totalHeight as the space in Y needed for the entire curve.
      * @returns svg string representing a single line.
      */
-    private wrapVertexForSvg(vertex: Vertex, totalHeight: number): string {
+    private wrapVertexForSvg(vertex: Vertex, totalHeight: number, gradientIndex: string): string {
         const vertexWidth: number = 0.003 * totalHeight;
         const line: string = `<line x1="${vertex.getStart().getX()}" y1="${vertex.getStart().getY()}" x2="${vertex
             .getEnd()
-            .getX()}" y2="${vertex
-            .getEnd()
-            .getY()}" stroke="white" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
+            .getX()}" y2="${vertex.getEnd().getY()}" stroke="url(#grad${gradientIndex
+            .toString()
+            .padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
         console.log(line);
         return line;
     }

@@ -1,5 +1,5 @@
-import { Point } from "./Point";
-import { Vertex } from "./Vertex";
+import { Point } from "./point";
+import { Vertex } from "./vertex";
 
 /**
  * Represents a sprirolateral curve, consisting of individual vertices. The curve is built gradually, and internally

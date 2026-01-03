@@ -1,7 +1,7 @@
-import { Curve } from "../src/Curve";
-import { generateCurve } from "../src/CurveGenerator";
-import { Point } from "../src/Point";
-import { Vertex } from "../src/Vertex";
+import { Curve } from "../src/curve";
+import { generateCurve } from "../src/curve-generator";
+import { Point } from "../src/point";
+import { Vertex } from "../src/vertex";
 
 describe("testing if simple square curve is correctly generated", () => {
     test("square curve defined by series of 5 points", () => {

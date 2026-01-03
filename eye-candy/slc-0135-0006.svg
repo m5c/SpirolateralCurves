@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><svg viewBox="-5.629676707170578 -7.541693354268637 10.225943365884449 10.327190329903102" style="background: black" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad00000000" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(0, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(0, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000001" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(0, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(15, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000002" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(15, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(30, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000003" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(30, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(45, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000004" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(45, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(60, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000005" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(60, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(75, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000006" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(75, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(90, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000007" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(90, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(105, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000008" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(105, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(120, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000009" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(120, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(135, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000010" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(135, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(150, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000011" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(150, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(165, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000012" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(165, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(180, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000013" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(180, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(195, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000014" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(195, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(210, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000015" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(210, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(225, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000016" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(225, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(240, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000017" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(240, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(255, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000018" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(255, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(270, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000019" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(270, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(285, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000020" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(285, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(300, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000021" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(300, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(315, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000022" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(315, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(330, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000023" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(330, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(345, 100%, 50%)"/>
+            </linearGradient></defs><line x1="0" y1="0" x2="0.08715574274765817" y2="-0.9961946980917455" stroke="url(#grad00000000)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="0.08715574274765817" y1="-0.9961946980917455" x2="1.372730962120737" y2="0.5358941881462103" stroke="url(#grad00000001)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="1.372730962120737" y1="0.5358941881462103" x2="-1.6158531321544998" y2="0.2744269599032366" stroke="url(#grad00000002)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-1.6158531321544998" y1="0.2744269599032366" x2="1.4483246403214123" y2="-2.296723478842921" stroke="url(#grad00000003)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="1.4483246403214123" y1="-2.296723478842921" x2="1.0125459265831225" y2="2.6842500116158066" stroke="url(#grad00000004)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="1.0125459265831225" y1="2.6842500116158066" x2="-2.844179731536115" y2="-1.91201664709806" stroke="url(#grad00000005)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-2.844179731536115" y1="-1.91201664709806" x2="-1.8479850334443693" y2="-1.8248609043504018" stroke="url(#grad00000006)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-1.8479850334443693" y1="-1.8248609043504018" x2="-3.3800739196823253" y2="-0.5392856849773229" stroke="url(#grad00000007)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-3.3800739196823253" y1="-0.5392856849773229" x2="-3.118606691439351" y2="-3.5278697792525597" stroke="url(#grad00000008)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-3.118606691439351" y1="-3.5278697792525597" x2="-0.547456252693193" y2="-0.4636920067766481" stroke="url(#grad00000009)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-0.547456252693193" y1="-0.4636920067766481" x2="-5.5284297431519205" y2="-0.8994707205149376" stroke="url(#grad00000010)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-5.5284297431519205" y1="-0.8994707205149376" x2="-0.9321630844380522" y2="-4.756196378634174" stroke="url(#grad00000011)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-0.9321630844380522" y1="-4.756196378634174" x2="-1.01931882718571" y2="-3.7600016805424286" stroke="url(#grad00000012)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-1.01931882718571" y1="-3.7600016805424286" x2="-2.3048940465587893" y2="-5.292090566780384" stroke="url(#grad00000013)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-2.3048940465587893" y1="-5.292090566780384" x2="0.6836900477164476" y2="-5.03062333853741" stroke="url(#grad00000014)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="0.6836900477164476" y1="-5.03062333853741" x2="-2.380487724759464" y2="-2.459472899791252" stroke="url(#grad00000015)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-2.380487724759464" y1="-2.459472899791252" x2="-1.9447090110211733" y2="-7.44044639024998" stroke="url(#grad00000016)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-1.9447090110211733" y1="-7.44044639024998" x2="1.9120166470980635" y2="-2.844179731536112" stroke="url(#grad00000017)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="1.9120166470980635" y1="-2.844179731536112" x2="0.915821949006318" y2="-2.93133547428377" stroke="url(#grad00000018)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="0.915821949006318" y1="-2.93133547428377" x2="2.447910835244274" y2="-4.216910693656849" stroke="url(#grad00000019)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="2.447910835244274" y1="-4.216910693656849" x2="2.1864436070013" y2="-1.228326599381612" stroke="url(#grad00000020)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="2.1864436070013" y1="-1.228326599381612" x2="-0.3847068317448583" y2="-4.2925043718575235" stroke="url(#grad00000021)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="-0.3847068317448583" y1="-4.2925043718575235" x2="4.596266658713869" y2="-3.8567256581192324" stroke="url(#grad00000022)" stroke-width="0.030374089205597362" stroke-linecap="round"/><line x1="4.596266658713869" y1="-3.8567256581192324" x2="1.7763568394002505e-15" y2="4.440892098500626e-15" stroke="url(#grad00000023)" stroke-width="0.030374089205597362" stroke-linecap="round"/></svg>

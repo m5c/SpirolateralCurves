@@ -2,7 +2,7 @@
 
 An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve viewer webapp.
 
-<img src="eye-candy/slc-0126-0004.svg" width="60%" style="display: block; margin-left: auto; margin-right: auto;">
+<img src="eye-candy/README-slc-0153-0005.svg" width="60%" style="display: block; margin-left: auto; margin-right: auto;">
 
 ## Project goals
 

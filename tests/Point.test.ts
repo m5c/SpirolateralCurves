@@ -1,4 +1,4 @@
-import { Point } from "../src/Point";
+import { Point } from "../src/point";
 
 describe("testing if Point object is correctly initialized and getters return correct values", () => {
     test("point stores positions correctly", () => {

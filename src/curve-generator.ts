@@ -1,12 +1,11 @@
-import { Curve } from "./Curve";
-import { Point } from "./Point";
-import { Turtle } from "./Turtle";
+import { Curve } from "./curve";
+import { Point } from "./point";
+import { Turtle } from "./turtle";
 
 /**
  * Core function of the generator class. Creates a turtle and gradually builds a curve, consisting of multiple vertices.
  * Each vertex represents one turtle move.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function generateCurve(initialHeading: number, initialPosition: Point, angle: number, amount: number): Curve {
     // Create new Turtle, starting at origin and heading north.
     const turtle: Turtle = new Turtle(initialHeading, initialPosition);

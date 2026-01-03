@@ -1,5 +1,5 @@
-import { Point } from "../src/Point";
-import { Turtle } from "../src/Turtle";
+import { Point } from "../src/point";
+import { Turtle } from "../src/turtle";
 
 describe("testing if advance correctly displaces north facing turtle", () => {
     test("turtle at expected x/y position", () => {

@@ -1,4 +1,4 @@
-import { Point } from "./Point";
+import { Point } from "./point";
 
 /**
  * Helper class to define straight lines, as defined by a pair of points. Vertices are immutable.

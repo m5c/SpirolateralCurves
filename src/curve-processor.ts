@@ -1,4 +1,4 @@
-import { Curve } from "./Curve";
+import { Curve } from "./curve";
 
 /**
  * Interface definition for CurveProcessors. CurveProcessors consume curves and produce a visualization, e.g. in form

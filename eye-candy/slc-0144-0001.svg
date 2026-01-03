@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><svg viewBox="-0.3282729827756454 -1.0061566450726631 0.9843320117661527 1.0161185920535807" style="background: black" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="grad00000000" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(0, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(0, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000001" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(0, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(72, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000002" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(72, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(144, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000003" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(144, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(216, 100%, 50%)"/>
+            </linearGradient><linearGradient id="grad00000004" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(216, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(288, 100%, 50%)"/>
+            </linearGradient></defs><line x1="0" y1="0" x2="0.08715574274765817" y2="-0.9961946980917455" stroke="url(#grad00000000)" stroke-width="0.002988584094275237" stroke-linecap="round"/><line x1="0.08715574274765817" y1="-0.9961946980917455" x2="0.6021938176577125" y2="-0.13902739738963332" stroke="url(#grad00000001)" stroke-width="0.002988584094275237" stroke-linecap="round"/><line x1="0.6021938176577125" y1="-0.13902739738963332" x2="-0.31831103579472797" y2="-0.5297585258789068" stroke="url(#grad00000002)" stroke-width="0.002988584094275237" stroke-linecap="round"/><line x1="-0.31831103579472797" y1="-0.5297585258789068" x2="0.6560590289905073" y2="-0.7547095802227717" stroke="url(#grad00000003)" stroke-width="0.002988584094275237" stroke-linecap="round"/><line x1="0.6560590289905073" y1="-0.7547095802227717" x2="-1.1102230246251565e-16" y2="2.220446049250313e-16" stroke="url(#grad00000004)" stroke-width="0.002988584094275237" stroke-linecap="round"/></svg>

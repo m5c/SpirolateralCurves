@@ -1,4 +1,4 @@
-import { Point } from "./Point";
+import { Point } from "./point";
 
 /**
  * Implements a Turtle for basic turtle graphics.
