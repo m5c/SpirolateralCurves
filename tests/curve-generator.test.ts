@@ -1,17 +1,15 @@
 import { Curve } from "../src/curve";
 import { generateCurve } from "../src/curve-generator";
-import { Point } from "../src/point";
 import { Vertex } from "../src/vertex";
 
 describe("testing if simple square curve is correctly generated", () => {
     test("square curve defined by series of 5 points", () => {
         const initialHeading: number = 0;
-        const initialPosition: Point = new Point(0, 0);
         const angle: number = 90;
         const inMotiveAmount: number = 1;
 
         // This must generate a square, i.e. 5 points (start and end are separate positions)
-        const curve: Curve = generateCurve(initialHeading, initialPosition, angle, inMotiveAmount);
+        const curve: Curve = generateCurve(initialHeading, angle, inMotiveAmount);
 
         // Verify the amount of points in curve
         expect(curve.getVertexAmount()).toBe(4);

@@ -6,8 +6,9 @@ import { Turtle } from "./turtle";
  * Core function of the generator class. Creates a turtle and gradually builds a curve, consisting of multiple vertices.
  * Each vertex represents one turtle move.
  */
-export function generateCurve(initialHeading: number, initialPosition: Point, angle: number, amount: number): Curve {
+export function generateCurve(initialHeading: number, angle: number, amount: number): Curve {
     // Create new Turtle, starting at origin and heading north.
+    const initialPosition: Point = new Point(0, 0);
     const turtle: Turtle = new Turtle(initialHeading, initialPosition);
     let moveCounter: number = 1;
 

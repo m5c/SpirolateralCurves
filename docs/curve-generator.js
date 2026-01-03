@@ -2,13 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateCurve = generateCurve;
 const curve_1 = require("./curve");
+const point_1 = require("./point");
 const turtle_1 = require("./turtle");
 /**
  * Core function of the generator class. Creates a turtle and gradually builds a curve, consisting of multiple vertices.
  * Each vertex represents one turtle move.
  */
-function generateCurve(initialHeading, initialPosition, angle, amount) {
+function generateCurve(initialHeading, angle, amount) {
     // Create new Turtle, starting at origin and heading north.
+    const initialPosition = new point_1.Point(0, 0);
     const turtle = new turtle_1.Turtle(initialHeading, initialPosition);
     let moveCounter = 1;
     // Initialize empty Curve (will be gradually filled with vertices, as turtle moves)

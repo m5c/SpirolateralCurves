@@ -1,36 +1,30 @@
 "use strict";
-/**
- * This is the only source file bound to the index.html document. It can only be used in the webapp and replaces the
- * index.ts/js entrypoint.
- */
-// import { Curve } from "./curve";
-// import { generateCurve } from "./curve-generator";
-// import { CurveProcessor } from "./curve-processor";
-// import { Point } from "./point";
-// import { SvgStringBuilder } from "./svg-string-builder";
+Object.defineProperty(exports, "__esModule", { value: true });
+const curve_generator_1 = require("./curve-generator");
+const curve_processor_1 = require("./curve-processor");
+const initialHeading = 5;
+const angle = 122;
+const amount = 6;
 /**
  * This function is called on page load.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function initUI() {
-    console.log("yay");
-    const initialHeading = 5;
-    // const initialPosition: Point = new Point(0, 0);
-    const angle = 122;
-    const amount = 6;
+    // Generate curve based on current params
+    const curve = (0, curve_generator_1.generateCurve)(initialHeading, angle, amount);
+    // Convert curve to svg-string
+    const curveProcessor = new curve_processor_1.CurveProcessor();
+    const svgString = curveProcessor.process(curve);
+    // Replace current svg by parsed svg string.
+    // const svgParent = document.getElementById("curve")?.parentNode;
+    // document.getElementById("curve")?.remove;
+    // svgParent?.appendChild()
+    const svg = document.getElementById("curve");
+    if (svg)
+        svg.innerHTML = svgString;
+    // Update parameters
     updateParamReport(initialHeading, amount, angle);
 }
-// for (let angle: number = 1; angle < 180; angle++) {
-//     for (let amount: number = 1; amount < 8; amount++) {
-// Generate a simple curve
-// const curve: Curve = generateCurve(initialHeading, initialPosition, angle, amount);
-// // Export the curve to an SVG file
-// const curveProcessor: CurveProcessor = new SvgStringBuilder(
-//     `/tmp/slc-${angle.toString().padStart(4, "0")}-${amount.toString().padStart(4, "0")}.svg`
-// );
-// curveProcessor.process(curve);
-//     }
-// }
 /**
  * Identifies parameter field and updates displayed values
  * @param initialHeading initial heading offset from north.
