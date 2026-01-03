@@ -6,17 +6,17 @@ An exploratory project, to learn and document typescript practices and tools, on
 
 Although a visual project, the purpose is a familiarization with typescript and its environment. As such, the priorities are:
 
-- Document the project and tools as starting point for future personal project: [typescript.md](typescript.md)
-- Stick to typescript, avoid javascript where possible.
-- Apply coding best practices and conventions, notably:
-  - Reference configuration of npm.
-  - A reasonably strict linter configuration (enforce format and comments).
-  - Unit tests.
-- Avoid libraries / third party dependencies doing too much heavy lifting (including build dependencies - but with exception to what is needed for a best-practice build)
-- Stick to popular tools, document tool selection and configuration: [environment.md](environment.md)
-  - VSCode
-  - IDE plugins
-  - Node / npm plugins
+-   Document the project and tools as starting point for future personal project: [typescript.md](typescript.md)
+-   Stick to typescript, avoid javascript where possible.
+-   Apply coding best practices and conventions, notably:
+    -   Reference configuration of npm.
+    -   A reasonably strict linter configuration (enforce format and comments).
+    -   Unit tests.
+-   Avoid libraries / third party dependencies doing too much heavy lifting (including build dependencies - but with exception to what is needed for a best-practice build)
+-   Stick to popular tools, document tool selection and configuration: [environment.md](environment.md)
+    -   VSCode
+    -   IDE plugins
+    -   Node / npm plugins
 
 > The remainder of this page documents the spriolateral curve context and the elicited software design.
 
@@ -28,8 +28,8 @@ This program generates _spirolateral curves_, which can be generated using a _tu
 
 Imagine a turtle moving slowly forward, with a pen attached to its belly. Let's further consider that the turtle can only perform two actions: [^1]
 
-- Move straight forward, for a given distance.
-- Turn in place, for a given angle.
+-   Move straight forward, for a given distance.
+-   Turn in place, for a given angle.
 
 If our turtle keeps repeating the above two actions, we can trace the path it took on paper.
 
@@ -41,11 +41,11 @@ Spirolateral curves are a special case of turtle graphics, i.e. they can be real
 
 In contrast to general turtle graphics, the turtle's actions are not arbitrary, but follow a specific algorithm.
 
-- The turtle produces series of "_motives_".
-- Each motive is itself a series of moves and turns, where:
-  - The initial move has length `1`.
-  - The length of every follow-up move within a motive is the next a natural multiple, i.e. `2`, `3`, `4`, ...
-  - The angle between two moves is constant, e.g. "10 degrees left".
+-   The turtle produces series of "_motives_".
+-   Each motive is itself a series of moves and turns, where:
+    -   The initial move has length `1`.
+    -   The length of every follow-up move within a motive is the next a natural multiple, i.e. `2`, `3`, `4`, ...
+    -   The angle between two moves is constant, e.g. "10 degrees left".
 
 ## Software design
 
@@ -55,13 +55,13 @@ This section details how concepts needed to generate and visualize spirolateral 
 
 Throughout the implementation, we'll use the following terminology:
 
-- `heading`: direction of the turtle's head, as clockwise offset from north in degrees.
+-   `heading`: direction of the turtle's head, as clockwise offset from north in degrees.
 
-- `counter`: the turtle's current count of steps within the current motive.
+-   `counter`: the turtle's current count of steps within the current motive.
 
-- `amount`: the amount of steps within a motive.
+-   `amount`: the amount of steps within a motive.
 
-- `angle`: degrees by which the turtle will turn right after any move (including after completed motives).
+-   `angle`: degrees by which the turtle will turn right after any move (including after completed motives).
 
 ### Components and behaviour
 
@@ -71,28 +71,23 @@ title: Spirolateral Curve Generator
 ---
 classDiagram
     class CurveGenerator{
-        +generateCurve(angle, amount):Curve
+        <<static>> generateCurve(initialHeading, initialPosition: Point, angle, amount):Curve
     }
 
     class Turtle{
-        -double heading
-        -double positionX
-        -double positionY
+        -heading: int
+        -Position: Point
         +Turtle(initX, initY, initHeading)
         +advance(distance)
         +turnClockwise(angle)
-        +getPositionX():int
-        +getPositionY():int
+        +getPosition():Point
         +getOrientation():int
     }
 
     class Curve {
-        -int minX
-        -int minY
-        -int maxX
-        -int maxY
-        +addVertex(vertex): void
-        +getVertices(): [Vertex]
+        +addVertex(endPoint): void
+        +getVertexAmount(): number
+        +getVertex(index: number): Vertex
         +get minX(): int
         +get minY(): int
         +get maxX(): int
@@ -100,11 +95,14 @@ classDiagram
 
     }
 
+    class Point{
+      +int x
+      +int y
+    }
+
     class Vertex{
-        +int startX
-        +int startY
-        +int endX
-        +int endY
+        +start: Point
+        +end: Point
     }
 
     class CurveProcessor{
@@ -117,7 +115,9 @@ classDiagram
      CurveGenerator ..> Turtle : generateCurve lets turtle advance and turn in motives
      CurveGenerator ..> Curve : Produces description of spirolateral curve
      CurveProcessor ..> Curve : Consumes description of spirolateral curve
-     Curve *--> "1..*" Vertex : Spirolateral curve is composed of vertices
+     Curve *--> "1..*" Point : Spirolateral curve is composed of points, defining vertices
+     Curve ..> Vertex : Curves expose consecutive pairs of points as vertices.
+     Vertex o--> Point
 ```
 
 > Project components and relations. A `(Spirolateral) Curve` object is first produced, then consumed for visual presentation.
@@ -125,11 +125,11 @@ classDiagram
 The main control flow consists of two phases:
 
 1. **Generate** a spirolateral curve: A `CurveGenerator` uses a `Turtle` instance to incrementally produce `Curve` object (composed of a series of `Vertex` objects).
-   - The `Turtle` object embodies only heading and position. The displacement strategy (how far to advance, angle to turn) is encoded in the `CurveGenerator`, which simply invokes the `Turtle`s corresponding `advance` and `turn` methods (see previous section, ["_Graphics_"](#spirolateral-curves)).
-   - Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertex`, which will be eventually visualized.
+    - The `Turtle` object embodies only heading and position. The displacement strategy (how far to advance, angle to turn) is encoded in the `CurveGenerator`, which simply invokes the `Turtle`s corresponding `advance` and `turn` methods (see previous section, ["_Graphics_"](#spirolateral-curves)).
+    - Every `Turtle` displacement holds a starting position (where the `Turtle` was before moving) and an iteration ending position (where the `Turtle` is located after moving). The position pair defines a `Vertex`, which will be eventually visualized.
 2. **Process** a spirolateral curve: A `CurveProcessor` afterwards consumes the `Curve` object, to directly or indirectly visualize the total path taken by the `Turtle`.
-   - The `SvgStringBuilder` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
-   - The `SvgObjectBuilder` does not operate on String level, but constructs or modifies an SVG object, for dynamic visualization, i.e. instant re-rendering on `Turtle` parameter changes.
+    - The `SvgStringBuilder` produces a static file, which is stored on disk an can be inspected with an svg renderer, e.g. a browser.
+    - The `SvgObjectBuilder` does not operate on String level, but constructs or modifies an SVG object, for dynamic visualization, i.e. instant re-rendering on `Turtle` parameter changes.
 
 ## Challenges and solutions
 
@@ -139,8 +139,8 @@ A non-trivial problem is when to stop the turtle. Turtle graphics, based on the 
 
 Testing for when a turtle is back to its starting position and heading is insufficient for two reasons:
 
-- Rounding errors prevent accurate testing.
-- Some parameters produce non-circular traces, e.g. for `angle = 90`, `amount = 4`, the turtle moves further away from the origin, with every motive.
+-   Rounding errors prevent accurate testing.
+-   Some parameters produce non-circular traces, e.g. for `angle = 90`, `amount = 4`, the turtle moves further away from the origin, with every motive.
 
 To overcome the issue, we simply check on each completed motive, wether the turtle's heading matches the initial heading. If so, we stop the turtle. [^2]
 
