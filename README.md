@@ -1,4 +1,4 @@
-# Spirolateral Curve Viewer
+# Spirolateral Curves
 
 An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve viewer webapp.
 
