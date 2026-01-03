@@ -6,8 +6,8 @@
     "scripts": {
         "lint": "npx eslint src",
         "test": "jest",
-        "fast-exec": "tsc src/*.ts; node ./src/index.js; rm src/*.js",
-        "exec": "npx eslint src; jest; tsc src/*.ts; node ./src/index.js; rm src/*.js"
+        "exec": "tsc; node ./public/index.js; rm public/*.js; rm public/*.map",
+        "build": "npx eslint src; jest; tsc; node ./public/index.js"
     },
     "repository": {
         "type": "git",
