@@ -2,6 +2,8 @@
 
 An exploratory project, to learn and document typescript practices and tools, on the example of a spirolateral curve viewer webapp.
 
+<img src="eye-candy/slc-0126-0004.svg" width="60%" style="display: block; margin-left: auto; margin-right: auto;">
+
 ## Project goals
 
 Although a visual project, the purpose is a familiarization with typescript and its environment. As such, the priorities are:
@@ -71,7 +73,7 @@ title: Spirolateral Curve Generator
 ---
 classDiagram
     class CurveGenerator{
-        <<static>> generateCurve(initialHeading, initialPosition: Point, angle, amount):Curve
+        <<static>> generateCurve(initHead, initPos: Point, angle, amount):Curve
     }
 
     class Turtle{

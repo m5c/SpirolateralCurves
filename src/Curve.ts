@@ -7,10 +7,10 @@ import { Vertex } from "./Vertex";
  */
 class Curve {
     // Pick most extreme values, so low / high-scores are guaranteed to be updated on first vertex added.
-    private minX: number = Number.MAX_VALUE;
-    private minY: number = Number.MAX_VALUE;
-    private maxX: number = Number.MIN_VALUE;
-    private maxY: number = Number.MIN_VALUE;
+    private minX: number;
+    private minY: number;
+    private maxX: number;
+    private maxY: number;
 
     // Curves are defined as a series of points, the initial point is provided at initialization.
     private points: Point[] = [];
@@ -23,6 +23,12 @@ class Curve {
      */
     constructor(start: Point) {
         this.points.push(start);
+
+        // update min and max scores
+        this.minX = start.getX();
+        this.maxX = start.getX();
+        this.minY = start.getY();
+        this.maxY = start.getY();
     }
 
     /**
@@ -31,6 +37,12 @@ class Curve {
      */
     addVertex(endPoint: Point): void {
         this.points.push(endPoint);
+
+        // update min and max scores
+        this.minX = Math.min(this.minX, endPoint.getX());
+        this.maxX = Math.max(this.maxX, endPoint.getX());
+        this.minY = Math.min(this.minY, endPoint.getY());
+        this.maxY = Math.max(this.maxY, endPoint.getY());
     }
 
     /**
@@ -50,6 +62,30 @@ class Curve {
             throw new Error("Vertex index out of bounds.");
         }
         return new Vertex(this.points[index], this.points[index + 1]);
+    }
+
+    /**
+     * Returns top-left canvas point, as needed based on vertex content.
+     * @returns a point defining the top-left canvas delimiter.
+     */
+    getTopLeftPoint(): Point {
+        return new Point(this.minX, this.minY);
+    }
+
+    /**
+     * Helper function to determine how much space is needed, horizontally.
+     * @returns Distance between x max and min value in all vertex points.
+     */
+    getWidth(): number {
+        return this.maxX - this.minX;
+    }
+
+    /**
+     * Helper function to determine how much space is needed, vertically.
+     * @returns Distance between y max and min value in all vertex points.
+     */
+    getHeight(): number {
+        return this.maxY - this.minY;
     }
 }
 

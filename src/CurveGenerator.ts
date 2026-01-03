@@ -15,8 +15,9 @@ export function generateCurve(initialHeading: number, initialPosition: Point, an
     // Initialize empty Curve (will be gradually filled with vertices, as turtle moves)
     const curve: Curve = new Curve(initialPosition);
 
-    // Until turtle is heading is back to original heading, proceed constructing curve:
-    while (turtle.getHeading() !== initialHeading || curve.getVertexAmount() == 0) {
+    // Until turtle is heading is back to original heading, AFTER a FULL motive...
+    // while (turtle.getHeading() !== initialHeading || curve.getVertexAmount() == 0) {
+    while (!(turtle.getHeading() == initialHeading && moveCounter == 1 && curve.getVertexAmount() > 0)) {
         // Here's the basic spirolateral curve algorithm:
         // 1. advance turtle
         turtle.advance(moveCounter);
