@@ -87,11 +87,17 @@ classDiagram
     }
 
     class Curve {
-        +int minX
-        +int minY
-        +int maxX
-        +int maxY
+        -int minX
+        -int minY
+        -int maxX
+        -int maxY
+        +addVertex(vertex): void
         +getVertices(): [Vertex]
+        +get minX(): int
+        +get minY(): int
+        +get maxX(): int
+        +get maxY(): int
+
     }
 
     class Vertex{
