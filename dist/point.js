@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Point = void 0;
 /**
  * Defines a basic point, defined by a pair of values (x, y). Points are immutable, i.e. their position cannot be
  * changed after initialization.
@@ -30,5 +27,4 @@ class Point {
         return this.y;
     }
 }
-exports.Point = Point;
-//# sourceMappingURL=point.js.map
+export { Point };

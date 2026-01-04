@@ -52,7 +52,7 @@ class CurveProcessor {
      * @param curve as the curve object storing information on all points defining the vertices.
      */
     private buildViewBox(curve: Curve): string {
-        const renderMargin = 0.01 * curve.getHeight();
+        const renderMargin = 0.05 * curve.getHeight();
         return `viewBox="${curve.getTopLeftPoint().getX() - renderMargin} ${
             curve.getTopLeftPoint().getY() - renderMargin
         } ${curve.getWidth() + renderMargin} ${curve.getHeight() + 2 * renderMargin}"`;

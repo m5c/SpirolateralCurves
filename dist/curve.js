@@ -1,8 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Curve = void 0;
-const point_1 = require("./point");
-const vertex_1 = require("./vertex");
+import { Point } from "./point";
+import { Vertex } from "./vertex";
 /**
  * Represents a sprirolateral curve, consisting of individual vertices. The curve is built gradually, and internally
  * keeps track of position low / high-scores, as new vertices are added.
@@ -51,14 +48,14 @@ class Curve {
         if (index >= this.getVertexAmount()) {
             throw new Error("Vertex index out of bounds.");
         }
-        return new vertex_1.Vertex(this.points[index], this.points[index + 1]);
+        return new Vertex(this.points[index], this.points[index + 1]);
     }
     /**
      * Returns top-left canvas point, as needed based on vertex content.
      * @returns a point defining the top-left canvas delimiter.
      */
     getTopLeftPoint() {
-        return new point_1.Point(this.minX, this.minY);
+        return new Point(this.minX, this.minY);
     }
     /**
      * Helper function to determine how much space is needed, horizontally.
@@ -75,5 +72,4 @@ class Curve {
         return this.maxY - this.minY;
     }
 }
-exports.Curve = Curve;
-//# sourceMappingURL=curve.js.map
+export { Curve };

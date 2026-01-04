@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const curve_generator_1 = require("./curve-generator");
-const curve_processor_1 = require("./curve-processor");
+import { generateCurve } from "./curve-generator";
+import { CurveProcessor } from "./curve-processor";
 const initialHeading = 5;
 const angle = 122;
 const amount = 6;
@@ -11,9 +9,9 @@ const amount = 6;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function initUI() {
     // Generate curve based on current params
-    const curve = (0, curve_generator_1.generateCurve)(initialHeading, angle, amount);
+    const curve = generateCurve(initialHeading, angle, amount);
     // Convert curve to svg-string
-    const curveProcessor = new curve_processor_1.CurveProcessor();
+    const curveProcessor = new CurveProcessor();
     const svgString = curveProcessor.process(curve);
     // Replace current svg by parsed svg string.
     // const svgParent = document.getElementById("curve")?.parentNode;
@@ -37,4 +35,3 @@ function updateParamReport(initialHeading, amount, angle) {
         paramReport.textContent = `α=${initialHeading}°, t=${amount}, β=${angle}°`;
     }
 }
-//# sourceMappingURL=webui.js.map

@@ -152,6 +152,18 @@ Shape and size of the turtle's path vastly differ, depending on the two initial 
 
 A bullet proof strategy, is to first generate Curve object (containing a series of `Vertex`s), and keeping track of lowest and highest positions encountered within a `Curve` object. These boundaries can be used afterwards as input for the `CurveProcessor` instance, if centering or scaling is needed.
 
+## Usage
+
+The curve generator is controlled via key commands:
+
+-   `1 .. 9`: load preset.
+-   `e`: export curve to svg file.
+-   `c`: toggle colours.
+-   `i`: invert colours.
+-   `q` / `w`: decrease / increase initial heading.
+-   `[` / `]`: decrease / increase steps per motive.
+-   `-` / `+`: decrease / increase inter-step angle.
+
 ## Author
 
 [M.Schiedermeier (m5c)](https://github.com/m5c)

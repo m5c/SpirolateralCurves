@@ -6,15 +6,15 @@ import { Curve } from "./curve";
 import { generateCurve } from "./curve-generator";
 import { CurveProcessor } from "./curve-processor";
 
-const initialHeading: number = 5;
-const angle: number = 122;
-const amount: number = 6;
+let initialHeading: number = 5;
+let angle: number = 130;
+let amount: number = 6;
 
 /**
  * This function is called on page load.
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function initUI() {
+function render() {
     // Generate curve based on current params
     const curve: Curve = generateCurve(initialHeading, angle, amount);
 
@@ -42,6 +42,52 @@ function initUI() {
 function updateParamReport(initialHeading: number, amount: number, angle: number) {
     const paramReport = document.getElementById("param-report");
     if (paramReport) {
-        paramReport.textContent = `α=${initialHeading}°, t=${amount}, β=${angle}°`;
+        paramReport.textContent = `α=${initialHeading}°, β=${angle}°, t=${amount} ● m5c`;
     }
 }
+
+// Essential to call initUI here, so the bundler does not consider it dead code... this is the equivalent of functions
+// executed on page load.
+// To actually produce the bundle:
+//  npm install --save-dev esbuild
+//  npx esbuild src/webui.ts   --bundle   --format=esm   --platform=browser --outfile=docs/bundle.js
+render();
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "-") {
+        angle = (angle - 1 + 360) % 360;
+        render();
+    }
+    if (event.key === "=") {
+        angle = (angle + 1 + 360) % 360;
+        render();
+    }
+    if (event.key === "[") {
+        amount = Math.max(amount - 1, 1);
+        render();
+    }
+    if (event.key === "]") {
+        amount = Math.min(amount + 1, 15);
+        render();
+    }
+    if (event.key === "q") {
+        initialHeading = (initialHeading - 1 + 360) % 360;
+        render();
+    }
+    if (event.key === "w") {
+        initialHeading = (initialHeading + 1 + 360) % 360;
+        render();
+    }
+    // if (event.key === "1") {
+    //     initialHeading = 5;
+    //     angle = 130;
+    //     amount = 6;
+    //     render();
+    // }
+    // if (event.key === "2") {
+    //     initialHeading = 0;
+    //     angle = 135;
+    //     amount = 4;
+    //     render();
+    // }
+});

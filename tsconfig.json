@@ -1,14 +1,15 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
-        "module": "CommonJS",
+        "target": "ES6",
+        "module": "ES2015",
 
         "rootDir": "src",
         "outDir": "docs",
 
         "strict": true,
         "esModuleInterop": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "declaration": true
     },
     "include": ["src/**/*.ts"]
 }

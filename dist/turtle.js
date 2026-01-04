@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Turtle = void 0;
-const point_1 = require("./point");
+import { Point } from "./point";
 /**
  * Implements a Turtle for basic turtle graphics.
  * A turtle is "stupid", it does not implement an algorithm, only state: where it is heading, and where it is (x / y).
@@ -26,7 +23,7 @@ class Turtle {
         // Update turtle position
         const nextX = this.position.getX() + Math.sin(radians) * distance;
         const nextY = this.position.getY() - Math.cos(radians) * distance;
-        this.position = new point_1.Point(nextX, nextY);
+        this.position = new Point(nextX, nextY);
     }
     /**
      * Turns the turtle clockwise by the provided amount of degrees.
@@ -52,5 +49,4 @@ class Turtle {
         return this.position;
     }
 }
-exports.Turtle = Turtle;
-//# sourceMappingURL=turtle.js.map
+export { Turtle };

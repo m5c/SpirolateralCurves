@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CurveProcessor = void 0;
 /**
  * Static svg file builder. Consumes curves and builds an svg by string concatenation, and persists the outcome on disk
  * for visual inspection.
@@ -66,5 +63,4 @@ class CurveProcessor {
         return line;
     }
 }
-exports.CurveProcessor = CurveProcessor;
-//# sourceMappingURL=curve-processor.js.map
+export { CurveProcessor };

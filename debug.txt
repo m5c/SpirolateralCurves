@@ -1,0 +1,6 @@
+tsconfig.json
+
+        "moduleResolution": "Node",
+
+        // "types": [], // https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/67406#discussioncomment-13555932
+

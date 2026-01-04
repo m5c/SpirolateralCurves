@@ -1,33 +1,25 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Vertex = void 0;
+import { Point } from "./point";
 /**
  * Helper class to define straight lines, as defined by a pair of points. Vertices are immutable.
  */
-class Vertex {
+declare class Vertex {
+    private start;
+    private end;
     /**
      * Vertex constructor.
      * @param start as starting point, defining x/y position.
      * @param end  as ending point, defining x/y position.
      */
-    constructor(start, end) {
-        this.start = start;
-        this.end = end;
-    }
+    constructor(start: Point, end: Point);
     /**
      * Getter for vertex start.
      * @returns start position of vertex.
      */
-    getStart() {
-        return this.start;
-    }
+    getStart(): Point;
     /**
      * Getter for vertex end.
      * @returns end position of vertex.
      */
-    getEnd() {
-        return this.end;
-    }
+    getEnd(): Point;
 }
-exports.Vertex = Vertex;
-//# sourceMappingURL=vertex.js.map
+export { Vertex };
