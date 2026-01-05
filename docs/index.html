@@ -29,6 +29,7 @@
 
             /* Bottom-right overlay fur current render parameters */
             .overlay {
+                display: flex;
                 position: absolute;
                 right: 12px;
                 bottom: 10px;
@@ -36,9 +37,15 @@
                 font-family: system-ui, sans-serif;
                 color: #aaa;
                 opacity: 0.85;
-                pointer-events: none; /* never interfere with SVG */
                 user-select: none;
                 white-space: nowrap;
+                gap: 0.15em;
+            }
+
+            a {
+                color: inherit; /* same color as text */
+                font: inherit; /* same font family, size, weight */
+                text-decoration: none; /* remove underline */
             }
         </style>
     </head>
@@ -47,8 +54,11 @@
         <svg id="curve"></svg>
 
         <!-- Overlay text -->
-        <div id="param-report" class="overlay">n=7, α=32°</div>
-
+        <div class="overlay">
+            <div id="param-report">n=7, α=32°</div>
+            <br />
+            <a href="http://github.com/m5c">m5c</a>
+        </div>
         <!-- TODO: assign numbers to pretty presets, allowing rapid approaching. -->
     </body>
 </html>

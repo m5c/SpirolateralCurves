@@ -301,9 +301,9 @@ var require_webui = __commonJS({
   "src/webui.ts"() {
     init_curve_generator();
     init_curve_processor();
-    var initialHeading = 225;
-    var angle = 45;
-    var amount = 2;
+    var initialHeading = 5;
+    var angle = 130;
+    var amount = 6;
     function render() {
       const curve = generateCurve(initialHeading, angle, amount);
       const curveProcessor = new CurveProcessor();
@@ -315,7 +315,7 @@ var require_webui = __commonJS({
     function updateParamReport(initialHeading2, amount2, angle2) {
       const paramReport = document.getElementById("param-report");
       if (paramReport) {
-        paramReport.textContent = `\u03B1=${initialHeading2}\xB0, \u03B2=${angle2}\xB0, t=${amount2} \u25CF m5c`;
+        paramReport.textContent = `\u03B1=${initialHeading2}\xB0, \u03B2=${angle2}\xB0, t=${amount2} \u25CF `;
       }
     }
     render();
@@ -342,6 +342,66 @@ var require_webui = __commonJS({
       }
       if (event.key === "w") {
         initialHeading = (initialHeading + 1 + 360) % 360;
+        render();
+      }
+      if (event.key === "1") {
+        initialHeading = 5;
+        angle = 130;
+        amount = 6;
+        render();
+      }
+      if (event.key === "2") {
+        initialHeading = 0;
+        angle = 54;
+        amount = 7;
+        render();
+      }
+      if (event.key === "3") {
+        initialHeading = 280;
+        angle = 45;
+        amount = 6;
+        render();
+      }
+      if (event.key === "4") {
+        initialHeading = 354;
+        angle = 135;
+        amount = 4;
+        render();
+      }
+      if (event.key === "5") {
+        initialHeading = 0;
+        angle = 136;
+        amount = 4;
+        render();
+      }
+      if (event.key === "6") {
+        initialHeading = 9;
+        angle = 136;
+        amount = 15;
+        render();
+      }
+      if (event.key === "7") {
+        initialHeading = 0;
+        angle = 111;
+        amount = 1;
+        render();
+      }
+      if (event.key === "8") {
+        initialHeading = 0;
+        angle = 129;
+        amount = 4;
+        render();
+      }
+      if (event.key === "9") {
+        initialHeading = 345;
+        angle = 135;
+        amount = 13;
+        render();
+      }
+      if (event.key === "0") {
+        initialHeading = 5;
+        angle = 138;
+        amount = 8;
         render();
       }
     });

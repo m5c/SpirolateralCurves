@@ -80,7 +80,7 @@ class CurveProcessor {
         }
         if (Math.round(y1 * precision) === Math.round(y2 * precision)) {
             y2 = y2 + 0.001;
-        } // y does not seem to work...
+        }
 
         const line: string = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex
             .toString()
