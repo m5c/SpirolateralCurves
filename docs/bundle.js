@@ -278,7 +278,18 @@ var init_curve_processor = __esm({
        */
       wrapVertexForSvg(vertex, totalHeight, gradientIndex) {
         const vertexWidth = 3e-3 * totalHeight;
-        const line = `<line x1="${vertex.getStart().getX()}" y1="${vertex.getStart().getY()}" x2="${vertex.getEnd().getX()}" y2="${vertex.getEnd().getY()}" stroke="url(#grad${gradientIndex.toString().padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
+        const x1 = vertex.getStart().getX();
+        const y1 = vertex.getStart().getY();
+        let x2 = vertex.getEnd().getX();
+        let y2 = vertex.getEnd().getY();
+        const precision = 1e3;
+        if (Math.round(x1 * precision) === Math.round(x2 * precision)) {
+          x2 = x2 + 1e-3;
+        }
+        if (Math.round(y1 * precision) === Math.round(y2 * precision)) {
+          y2 = y2 + 1e-3;
+        }
+        const line = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex.toString().padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
         return line;
       }
     };
@@ -290,9 +301,9 @@ var require_webui = __commonJS({
   "src/webui.ts"() {
     init_curve_generator();
     init_curve_processor();
-    var initialHeading = 5;
-    var angle = 130;
-    var amount = 6;
+    var initialHeading = 225;
+    var angle = 45;
+    var amount = 2;
     function render() {
       const curve = generateCurve(initialHeading, angle, amount);
       const curveProcessor = new CurveProcessor();

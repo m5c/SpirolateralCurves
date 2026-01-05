@@ -6,9 +6,12 @@ import { Curve } from "./curve";
 import { generateCurve } from "./curve-generator";
 import { CurveProcessor } from "./curve-processor";
 
-let initialHeading: number = 5;
-let angle: number = 130;
-let amount: number = 6;
+// let initialHeading: number = 176;
+// let angle: number = 122;
+// let amount: number = 9;
+let initialHeading: number = 225;
+let angle: number = 45;
+let amount: number = 2;
 
 /**
  * This function is called on page load.

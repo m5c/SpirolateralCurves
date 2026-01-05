@@ -66,9 +66,23 @@ class CurveProcessor {
      */
     private wrapVertexForSvg(vertex: Vertex, totalHeight: number, gradientIndex: string): string {
         const vertexWidth: number = 0.003 * totalHeight;
-        const line: string = `<line x1="${vertex.getStart().getX()}" y1="${vertex.getStart().getY()}" x2="${vertex
-            .getEnd()
-            .getX()}" y2="${vertex.getEnd().getY()}" stroke="url(#grad${gradientIndex
+
+        const x1 = vertex.getStart().getX();
+        const y1 = vertex.getStart().getY();
+        let x2 = vertex.getEnd().getX();
+        let y2 = vertex.getEnd().getY();
+
+        // Perfectly straight (horizontal / vertical) lines do not render in browser (presumably a bug).
+        // Hence we wiggle one end minimally.
+        const precision = 1000;
+        if (Math.round(x1 * precision) === Math.round(x2 * precision)) {
+            x2 = x2 + 0.001;
+        }
+        if (Math.round(y1 * precision) === Math.round(y2 * precision)) {
+            y2 = y2 + 0.001;
+        } // y does not seem to work...
+
+        const line: string = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex
             .toString()
             .padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
         return line;
