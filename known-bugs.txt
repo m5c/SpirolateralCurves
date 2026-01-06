@@ -1,0 +1,2 @@
+gradients flip in browser, if line is left or right of vertical, i.e. if x2 < x1
+red line is always full red

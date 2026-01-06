@@ -201,15 +201,15 @@ var init_turtle = __esm({
 });
 
 // src/curve-generator.ts
-function generateCurve(initialHeading, angle, amount) {
+function generateCurve(params) {
   const initialPosition = new Point(0, 0);
-  const turtle = new Turtle(initialHeading, initialPosition);
+  const turtle = new Turtle(params.getInitialHeading(), initialPosition);
   let moveCounter = 1;
   const curve = new Curve(initialPosition);
-  while (!(turtle.getHeading() == initialHeading && moveCounter == 1 && curve.getVertexAmount() > 0)) {
+  while (!(turtle.getHeading() == params.getInitialHeading() && moveCounter == 1 && curve.getVertexAmount() > 0)) {
     turtle.advance(moveCounter);
-    turtle.turnClockwise(angle);
-    if (moveCounter == amount)
+    turtle.turnClockwise(params.getAngle());
+    if (moveCounter == params.getAmount())
       moveCounter = 1;
     else {
       moveCounter++;
@@ -296,112 +296,118 @@ var init_curve_processor = __esm({
   }
 });
 
+// src/curve-params.ts
+var CurveParams;
+var init_curve_params = __esm({
+  "src/curve-params.ts"() {
+    "use strict";
+    CurveParams = class {
+      /**
+       * Preset constructor.
+       * @param initialHeading as the amount in degrees (clockwise, starting north) the turtle is heading.
+       * @param angle as the amount in degrees the turtle turns clockwise after each move.
+       * @param amount as the amount of move increments the turtle performs before resetting.
+       */
+      constructor(initialHeading, angle, amount) {
+        this.initialHeading = 5;
+        this.angle = 130;
+        this.amount = 6;
+        this.initialHeading = initialHeading;
+        this.angle = angle;
+        this.amount = amount;
+      }
+      /**
+       * Getter for preset initial heading.
+       * @returns Turtle's initial heading in degrees.
+       */
+      getInitialHeading() {
+        return this.initialHeading;
+      }
+      /**
+       * Getter for preset angle.
+       * @returns degrees the turtle turns clockwise after each move.
+       */
+      getAngle() {
+        return this.angle;
+      }
+      /**
+       * Getter for preset iteration amount.
+       * @returns amount of moves the turtle performes before resetting move distance.
+       */
+      getAmount() {
+        return this.amount;
+      }
+    };
+  }
+});
+
 // src/webui.ts
 var require_webui = __commonJS({
   "src/webui.ts"() {
     init_curve_generator();
     init_curve_processor();
-    var initialHeading = 5;
-    var angle = 130;
-    var amount = 6;
+    init_curve_params();
+    var presets = [];
+    presets.push(new CurveParams(5, 130, 6));
+    presets.push(new CurveParams(349, 60, 32));
+    presets.push(new CurveParams(280, 45, 6));
+    presets.push(new CurveParams(354, 135, 4));
+    presets.push(new CurveParams(0, 136, 4));
+    presets.push(new CurveParams(9, 136, 15));
+    presets.push(new CurveParams(0, 111, 1));
+    presets.push(new CurveParams(0, 129, 4));
+    presets.push(new CurveParams(345, 135, 13));
+    presets.push(new CurveParams(5, 138, 8));
+    var currentParams = presets[1];
     function render() {
-      const curve = generateCurve(initialHeading, angle, amount);
+      const curve = generateCurve(currentParams);
       const curveProcessor = new CurveProcessor();
       const svgString = curveProcessor.process(curve);
       const svg = document.getElementById("curve");
       if (svg) svg.innerHTML = svgString;
-      updateParamReport(initialHeading, amount, angle);
+      updateParamReport(currentParams);
     }
-    function updateParamReport(initialHeading2, amount2, angle2) {
+    function updateParamReport(params) {
       const paramReport = document.getElementById("param-report");
       if (paramReport) {
-        paramReport.textContent = `\u03B1=${initialHeading2}\xB0, \u03B2=${angle2}\xB0, t=${amount2} \u25CF `;
+        paramReport.textContent = `\u03B1=${params.getInitialHeading()}\xB0, \u03B2=${params.getAngle()}\xB0, t=${params.getAmount()}\u25CF`;
       }
     }
     render();
     document.addEventListener("keydown", function(event) {
       if (event.key === "-") {
-        angle = (angle - 1 + 360) % 360;
+        const angle = (currentParams.getAngle() - 1 + 360) % 360;
+        currentParams = new CurveParams(currentParams.getInitialHeading(), angle, currentParams.getAmount());
         render();
       }
       if (event.key === "=") {
-        angle = (angle + 1 + 360) % 360;
+        const angle = (currentParams.getAngle() + 1 + 360) % 360;
+        currentParams = new CurveParams(currentParams.getInitialHeading(), angle, currentParams.getAmount());
         render();
       }
       if (event.key === "[") {
-        amount = Math.max(amount - 1, 1);
+        const amount = Math.max(currentParams.getAmount() - 1, 1);
+        currentParams = new CurveParams(currentParams.getInitialHeading(), currentParams.getAngle(), amount);
         render();
       }
       if (event.key === "]") {
-        amount = Math.min(amount + 1, 15);
+        const amount = Math.min(currentParams.getAmount() + 1, 32);
+        currentParams = new CurveParams(currentParams.getInitialHeading(), currentParams.getAngle(), amount);
         render();
       }
       if (event.key === "q") {
-        initialHeading = (initialHeading - 1 + 360) % 360;
+        const initialHeading = (currentParams.getInitialHeading() - 1 + 360) % 360;
+        currentParams = new CurveParams(initialHeading, currentParams.getAngle(), currentParams.getAmount());
         render();
       }
       if (event.key === "w") {
-        initialHeading = (initialHeading + 1 + 360) % 360;
+        const initialHeading = (currentParams.getInitialHeading() + 1 + 360) % 360;
+        currentParams = new CurveParams(initialHeading, currentParams.getAngle(), currentParams.getAmount());
         render();
       }
-      if (event.key === "1") {
-        initialHeading = 5;
-        angle = 130;
-        amount = 6;
-        render();
-      }
-      if (event.key === "2") {
-        initialHeading = 0;
-        angle = 54;
-        amount = 7;
-        render();
-      }
-      if (event.key === "3") {
-        initialHeading = 280;
-        angle = 45;
-        amount = 6;
-        render();
-      }
-      if (event.key === "4") {
-        initialHeading = 354;
-        angle = 135;
-        amount = 4;
-        render();
-      }
-      if (event.key === "5") {
-        initialHeading = 0;
-        angle = 136;
-        amount = 4;
-        render();
-      }
-      if (event.key === "6") {
-        initialHeading = 9;
-        angle = 136;
-        amount = 15;
-        render();
-      }
-      if (event.key === "7") {
-        initialHeading = 0;
-        angle = 111;
-        amount = 1;
-        render();
-      }
-      if (event.key === "8") {
-        initialHeading = 0;
-        angle = 129;
-        amount = 4;
-        render();
-      }
-      if (event.key === "9") {
-        initialHeading = 345;
-        angle = 135;
-        amount = 13;
-        render();
-      }
-      if (event.key === "0") {
-        initialHeading = 5;
-        angle = 138;
-        amount = 8;
+      console.log(event.key);
+      if (event.key >= "0" && event.key <= "9") {
+        currentParams = presets[Number.parseInt(event.key)];
         render();
       }
     });
