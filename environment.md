@@ -68,28 +68,32 @@ Edit `eslint.config.mts`, add two things:
 
 Finally, test it with `npm run lint` -> shows errors for missing class documentation.
 
-## Command line tools
+## Typescript compiler
 
-### Typescript compiler
+### Module preamble
+
+The linking between individual typescript (import / export syntax), works differently depending on the interpreter executing the produced JS files.
+
+-   When interpreted by Node, the typescript files can be simply compiled as they are. Node will understands how individual files (modules) refer to one anoterh.
+-   When interpreted by a browser, a little extra magic is needed, because the browser does not understand the typescript specific import syntax. There's a hack: adding the `.js` file extension for every import, but that is contrived. Better is to produce something on compilation that the browser understands. This is called "_bundling_", i.e. a command is used to fuse all produces JS files to a single `bundle.js` file.
+
+### Compiling with npm
+
+npm only calls the `tsc` command. It is prefectly fine to manually compile using the `tsc` command:
 
 -   Install with `brew install tsc`
 -   Compile files with `tsc file.ts` (produces `.js` file.)
 
-### Compile and run
+Or, to have a cleaner process:
 
 -   Build, i.e. compile all typescript files: `tsc src/*.ts`
 -   Run (using node interpreter): `node src/Launcher.js`
 -   Clean up: `rm src/*js`
 
-### NPM
-
-#### Init
+#### npm scripts
 
 -   Create a default package.json file: `npm init -y`
 -   Update at least the `author` field.
-
-#### Scripts
-
 -   `npm` scripts can then be defined in the `scripts` field, e.g.:
 
 ```json
@@ -101,7 +105,37 @@ Finally, test it with `npm run lint` -> shows errors for missing class documenta
 
 -   To run any defined script, use: `npm run exec` (or replace `exec` by any script name).
 
-#### Add new dependencies
+### Compiling with a bundler
+
+The bundler is `esbuild`. It is called like this:
+
+`npx esbuild src/webui.ts   --bundle   --format=esm   --platform=browser --outfile=docs/bundle.js`
+
+There are a few caveats:
+
+-   The bundler optimizes the code, this also means it will strip a function if never called.
+    -   Check the size of the generated `bundle.js`, must at least have 10-100kb.
+-   There should be a separation between sources and generated js files. - In this repo, the `src` lies next to the `docs` repo (docs is deployed by github pages) - Configuration of source and target takes place via: `tsconfig.json`
+
+```json
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ES2015",
+
+        "rootDir": "src",
+        "outDir": "docs",
+
+        "strict": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": true
+    },
+    "include": ["src/**/*.ts"]
+}
+```
+
+## Dependencies
 
 To install a _local_ dependency, e.g. a linter: `npm init @eslint/config@latest`
 
@@ -209,6 +243,18 @@ Prettier's default formatting rules are good, but some adjustments make sense, e
 ## Other Plugins
 
 -   [VSCode mermaid preview](https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview)
+
+## Local hosting
+
+Browsers do not allow dynamic manipulation of local svg files, it is essential to access the webapp through a file server, rather than via file system.
+
+The easiest way the python server.
+
+```bash
+cd SpirolateralCurves/docs
+python3 -m http.server &
+open http://127.0.0.1:8000
+```
 
 ## References
 
