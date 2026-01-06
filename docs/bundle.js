@@ -246,10 +246,14 @@ var init_curve_processor = __esm({
         svgString = svgString + "<defs>";
         let gradientStart = 0;
         for (let i = 0; i < curve.getVertexAmount(); i++) {
-          const gradientEnd = 360 * i / curve.getVertexAmount();
+          const gradientEnd = 360 * (i + 1) / curve.getVertexAmount();
           svgString = svgString + `<linearGradient id="grad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
                 <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+            </linearGradient>`;
+          svgString = svgString + `<linearGradient id="Rgrad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+                <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
             </linearGradient>`;
           gradientStart = gradientEnd;
         }
@@ -278,8 +282,8 @@ var init_curve_processor = __esm({
        */
       wrapVertexForSvg(vertex, totalHeight, gradientIndex) {
         const vertexWidth = 3e-3 * totalHeight;
-        const x1 = vertex.getStart().getX();
-        const y1 = vertex.getStart().getY();
+        let x1 = vertex.getStart().getX();
+        let y1 = vertex.getStart().getY();
         let x2 = vertex.getEnd().getX();
         let y2 = vertex.getEnd().getY();
         const precision = 1e3;
@@ -349,7 +353,7 @@ var require_webui = __commonJS({
     init_curve_params();
     var presets = [];
     presets.push(new CurveParams(5, 130, 6));
-    presets.push(new CurveParams(349, 60, 32));
+    presets.push(new CurveParams(4, 60, 1));
     presets.push(new CurveParams(280, 45, 6));
     presets.push(new CurveParams(354, 135, 4));
     presets.push(new CurveParams(0, 136, 4));

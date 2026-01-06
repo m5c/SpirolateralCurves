@@ -25,12 +25,19 @@ class CurveProcessor {
         svgString = svgString + "<defs>";
         let gradientStart: number = 0;
         for (let i = 0; i < curve.getVertexAmount(); i++) {
-            const gradientEnd: number = (360 * i) / curve.getVertexAmount();
+            const gradientEnd: number = (360 * (i + 1)) / curve.getVertexAmount();
+            // forward gradient
             svgString =
                 svgString +
                 `<linearGradient id="grad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
                 <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+            </linearGradient>`;
+            svgString =
+                svgString +
+                `<linearGradient id="Rgrad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+                <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
             </linearGradient>`;
             gradientStart = gradientEnd;
         }
@@ -67,8 +74,8 @@ class CurveProcessor {
     private wrapVertexForSvg(vertex: Vertex, totalHeight: number, gradientIndex: string): string {
         const vertexWidth: number = 0.003 * totalHeight;
 
-        const x1 = vertex.getStart().getX();
-        const y1 = vertex.getStart().getY();
+        let x1 = vertex.getStart().getX();
+        let y1 = vertex.getStart().getY();
         let x2 = vertex.getEnd().getX();
         let y2 = vertex.getEnd().getY();
 
@@ -82,6 +89,21 @@ class CurveProcessor {
             y2 = y2 + 0.001;
         }
 
+        // Gradients are inverted if x2 < x1. Hence we swap endpoints if this is the case
+        // if (x1 > x2) {
+        //     const x0 = x1;
+        //     const y0 = y1;
+        //     x1 = x2;
+        //     y1 = y2;
+        //     x2 = x0;
+        //     y2 = y0;
+        // } HAS ABSOLUTELY NO EFFECT
+
+        // TODO: replace Fgrad by Rgrad if x2 > x1
+        // let gradOrientation = "Fgrad";
+        // if (x1 < x2) {
+        //     gradOrientation = "Rgrad";
+        // }
         const line: string = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex
             .toString()
             .padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;

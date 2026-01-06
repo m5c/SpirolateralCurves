@@ -9,7 +9,8 @@ import { CurveParams } from "./curve-params";
 
 const presets: CurveParams[] = [];
 presets.push(new CurveParams(5, 130, 6));
-presets.push(new CurveParams(349, 60, 32));
+presets.push(new CurveParams(4, 60, 1));
+// presets.push(new CurveParams(349, 60, 32));
 presets.push(new CurveParams(280, 45, 6));
 presets.push(new CurveParams(354, 135, 4));
 presets.push(new CurveParams(0, 136, 4));
