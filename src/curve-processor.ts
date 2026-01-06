@@ -35,9 +35,9 @@ class CurveProcessor {
             </linearGradient>`;
             svgString =
                 svgString +
-                `<linearGradient id="Rgrad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
-                <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
+                `<linearGradient id="gradR${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
             </linearGradient>`;
             gradientStart = gradientEnd;
         }
@@ -89,22 +89,11 @@ class CurveProcessor {
             y2 = y2 + 0.001;
         }
 
-        // Gradients are inverted if x2 < x1. Hence we swap endpoints if this is the case
-        // if (x1 > x2) {
-        //     const x0 = x1;
-        //     const y0 = y1;
-        //     x1 = x2;
-        //     y1 = y2;
-        //     x2 = x0;
-        //     y2 = y0;
-        // } HAS ABSOLUTELY NO EFFECT
-
-        // TODO: replace Fgrad by Rgrad if x2 > x1
-        // let gradOrientation = "Fgrad";
-        // if (x1 < x2) {
-        //     gradOrientation = "Rgrad";
-        // }
-        const line: string = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex
+        let gradOrientation = "";
+        if (x1 > x2) {
+            gradOrientation = "R";
+        }
+        const line: string = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradOrientation}${gradientIndex
             .toString()
             .padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
         return line;

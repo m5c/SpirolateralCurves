@@ -251,9 +251,9 @@ var init_curve_processor = __esm({
                 <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
                 <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
             </linearGradient>`;
-          svgString = svgString + `<linearGradient id="Rgrad${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="100%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
-                <stop offset="0%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
+          svgString = svgString + `<linearGradient id="gradR${i.toString().padStart(8, "0")}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="hsl(${gradientEnd}, 100%, 50%)"/>
+                <stop offset="100%" stop-color="hsl(${gradientStart}, 100%, 50%)"/>
             </linearGradient>`;
           gradientStart = gradientEnd;
         }
@@ -293,7 +293,11 @@ var init_curve_processor = __esm({
         if (Math.round(y1 * precision) === Math.round(y2 * precision)) {
           y2 = y2 + 1e-3;
         }
-        const line = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradientIndex.toString().padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
+        let gradOrientation = "";
+        if (x1 > x2) {
+          gradOrientation = "R";
+        }
+        const line = `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="url(#grad${gradOrientation}${gradientIndex.toString().padStart(8, "0")})" stroke-width="${vertexWidth}" stroke-linecap="round"/>`;
         return line;
       }
     };
