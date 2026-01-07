@@ -2,7 +2,7 @@
     "name": "Spirolateral Curves",
     "short_name": "SLC",
     "description": "An interactive spirolateral curve generator.",
-    "start_url": "/index.html",
+    "start_url": "/SpirolateralCurves/",
     "scope": "/",
     "display": "standalone",
     "theme_color": "#000000",
