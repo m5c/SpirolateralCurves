@@ -112,11 +112,9 @@ classDiagram
     }
 
 
-     CurveProcessor <|-- SvgStringBuilder
-     CurveProcessor <|-- SvgObjectBuilder
      CurveGenerator ..> Turtle : generateCurve lets turtle advance and turn in motives
      CurveGenerator ..> Curve : Produces description of spirolateral curve
-     CurveProcessor ..> Curve : Consumes description of spirolateral curve
+     CurveProcessor ..> Curve : Consumes description of spirolateral curve and builds svg
      Curve *--> "1..*" Point : Spirolateral curve is composed of points, defining vertices
      Curve ..> Vertex : Curves expose consecutive pairs of points as vertices.
      Vertex o--> Point
@@ -156,10 +154,8 @@ A bullet proof strategy, is to first generate Curve object (containing a series 
 
 The curve generator is controlled via key commands:
 
--   `1 .. 9`: load preset.
--   `e`: export curve to svg file.
--   `c`: toggle colours.
--   `i`: invert colours.
+-   `0 .. 9`: load preset.
+-   `r`: load random curve.
 -   `q` / `w`: decrease / increase initial heading.
 -   `[` / `]`: decrease / increase steps per motive.
 -   `-` / `+`: decrease / increase inter-step angle.
