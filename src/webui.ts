@@ -54,6 +54,17 @@ function updateParamReport(params: CurveParams) {
     }
 }
 
+/**
+ * Helper function to replace current curve by a curve of random parameters.
+ */
+function loadRandom() {
+    const initialHeading = Math.floor(Math.random() * 360);
+    const angle = Math.floor(Math.random() * 360);
+    const amount = Math.floor(Math.random() * 32);
+    currentParams = new CurveParams(initialHeading, angle, amount);
+    render();
+}
+
 // Essential to call initUI here, so the bundler does not consider it dead code... this is the equivalent of functions
 // executed on page load.
 // To actually produce the bundle:
@@ -93,11 +104,11 @@ document.addEventListener("keydown", function (event) {
         render();
     }
     if (event.key === "r") {
-        const initialHeading = Math.floor(Math.random() * 360);
-        const angle = Math.floor(Math.random() * 360);
-        const amount = Math.floor(Math.random() * 32);
-        currentParams = new CurveParams(initialHeading, angle, amount);
-        render();
+        loadRandom();
+    }
+    // Check if the tap is directly on the body (not on child elements)
+    if (event.target === document.body) {
+        loadRandom();
     }
     console.log(event.key);
     if (event.key >= "0" && event.key <= "9") {
