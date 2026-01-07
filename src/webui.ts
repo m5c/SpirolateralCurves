@@ -62,9 +62,6 @@ function loadRandom() {
     const initialHeading = Math.floor(Math.random() * 358) + 1;
     const angle = Math.floor(Math.random() * 358) + 1;
     const amount = Math.floor(Math.random() * (maxAmount - 1)) + 1;
-    console.log("a:" + initialHeading);
-    console.log("b:" + angle);
-    console.log("t:" + amount);
     currentParams = new CurveParams(initialHeading, angle, amount);
     render();
 }
