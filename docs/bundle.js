@@ -281,7 +281,7 @@ var init_curve_processor = __esm({
        * @returns svg string representing a single line.
        */
       wrapVertexForSvg(vertex, totalHeight, gradientIndex) {
-        const vertexWidth = 5e-3 * totalHeight;
+        const vertexWidth = 35e-4 * totalHeight;
         let x1 = vertex.getStart().getX();
         let y1 = vertex.getStart().getY();
         let x2 = vertex.getEnd().getX();
@@ -386,9 +386,6 @@ var require_webui = __commonJS({
       const initialHeading = Math.floor(Math.random() * 358) + 1;
       const angle = Math.floor(Math.random() * 358) + 1;
       const amount = Math.floor(Math.random() * (maxAmount - 1)) + 1;
-      console.log("a:" + initialHeading);
-      console.log("b:" + angle);
-      console.log("t:" + amount);
       currentParams = new CurveParams(initialHeading, angle, amount);
       render();
     }
