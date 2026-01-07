@@ -108,9 +108,9 @@ document.addEventListener("keydown", function (event) {
         loadRandom();
     }
     // Check if the tap is directly on the body (not on child elements)
-    // if (event.target === document.body) {
-    //     loadRandom();
-    // }
+    if (event.target === document.getElementById("curve")) {
+        loadRandom();
+    }
     console.log(event.key);
     if (event.key >= "0" && event.key <= "9") {
         currentParams = presets[Number.parseInt(event.key)];
