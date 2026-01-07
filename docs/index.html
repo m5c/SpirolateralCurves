@@ -118,9 +118,16 @@
                 /* transform-origin: bottom center; */
             }
 
+            /** only active on computers (excludes touch devices) */
             @media (hover: hover) {
+                /* no need for virtual keys */
                 .virtual-keys {
                     display: none;
+                }
+
+                /* enable welcome dialogue */
+                .instructions {
+                    display: flex;
                 }
             }
 
@@ -136,6 +143,51 @@
 
             .key-spacer {
                 flex: 0 0 3px; /* exact width of spacer */
+            }
+
+            /*The rest are floating instructions for desktop version*/
+            .instructions {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: rgba(0, 0, 0, 0.85);
+                color: #fff;
+                padding: 15px 20px;
+                border-radius: 10px;
+                font-size: 14px;
+                line-height: 1.6;
+                max-width: 260px;
+                z-index: 1000;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                border: 2px solid #fff; /* frame around panel */
+            }
+
+            .instructions h3 {
+                margin: 0 0 10px 0;
+                font-size: 16px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                padding-bottom: 5px;
+                font-family: Monaco, monospace;
+            }
+
+            .instructions ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .instructions li {
+                margin-bottom: 6px;
+                font-family: Monaco, monospace;
+            }
+
+            .instructions kbd {
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 4px;
+                padding: 2px 6px;
+                font-family: Monaco, monospace;
+                font-weight: bold;
             }
         </style>
     </head>
@@ -176,6 +228,16 @@
         <!-- INLINE SVG - content is dynamically created-->
         <svg id="curve"></svg>
 
-        <!-- TODO: assign numbers to pretty presets, allowing rapid approaching. -->
+        <div class="instructions" id="instructions">
+            <ul class="commands">
+                <li><kbd>r</kbd>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; load random</li>
+                <li><kbd>0 - 9</kbd>: &nbsp;&nbsp;&nbsp;load preset</li>
+                <li><kbd>q / w</kbd>: &nbsp;&nbsp;&nbsp;initial heading (α)</li>
+                <li><kbd>- / +</kbd>: &nbsp;&nbsp;&nbsp;turn angle (β)</li>
+                <li><kbd>[ / ]</kbd>: &nbsp;&nbsp;&nbsp;reset threshold (t)</li>
+                <li><kbd>v</kbd>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;visit project page</li>
+                <li><kbd>x</kbd>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hide keycodes</li>
+            </ul>
+        </div>
     </body>
 </html>

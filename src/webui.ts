@@ -107,6 +107,15 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "r") {
         loadRandom();
     }
+    if (event.key === "v") {
+        window.location.href = "https://github.com/m5c/SpirolateralCurves";
+    }
+    if (event.key === "x") {
+        const instructions = document.getElementById("instructions");
+        if (instructions) {
+            instructions.style.display = "none";
+        }
+    }
     // Check if the tap is directly on the body (not on child elements)
     if (event.target === document.getElementById("curve")) {
         loadRandom();

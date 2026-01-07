@@ -424,6 +424,15 @@ var require_webui = __commonJS({
       if (event.key === "r") {
         loadRandom();
       }
+      if (event.key === "v") {
+        window.location.href = "https://github.com/m5c/SpirolateralCurves";
+      }
+      if (event.key === "x") {
+        const instructions = document.getElementById("instructions");
+        if (instructions) {
+          instructions.style.display = "none";
+        }
+      }
       if (event.target === document.getElementById("curve")) {
         loadRandom();
       }
