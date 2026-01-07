@@ -1,0 +1,22 @@
+{
+    "name": "Spirolateral Curves",
+    "short_name": "SLC",
+    "description": "An interactive spirolateral curve generator.",
+    "start_url": "/index.html",
+    "scope": "/",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#000000",
+    "icons": [
+        {
+            "src": "/images/apple-touch-icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/apple-touch-icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
