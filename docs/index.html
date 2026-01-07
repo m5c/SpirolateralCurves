@@ -69,9 +69,9 @@
                 bottom: 1rem;
                 left: 50%;
                 transform: translateX(-50%);
-                display: grid;
+                display: flex;
                 grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
-                gap: 0.5rem;
+                gap: 0.2rem;
                 z-index: 9999;
                 padding: 0.5rem;
             }
@@ -112,8 +112,10 @@
 
             .virtual-keys {
                 grid-auto-flow: column;
-                transform: translateX(-50%) scale(0.5);
-                transform-origin: bottom center;
+
+                /* enable for smaller buttons */
+                /* transform: translateX(-50%) scale(0.5); */
+                /* transform-origin: bottom center; */
             }
 
             @media (hover: hover) {
@@ -125,6 +127,10 @@
             .virtual-keys button {
                 -webkit-tap-highlight-color: transparent;
             }
+
+            .key-spacer {
+                flex: 0 0 8px; /* exact width of spacer */
+            }
         </style>
     </head>
     <body>
@@ -135,27 +141,29 @@
             <button data-key="4">4</button>
             <button data-key="5">5</button>
             <button data-key="6">6</button>
-            <button data-key="7">7</button>
+            <!-- <button data-key="7">7</button>
             <button data-key="8">8</button>
             <button data-key="9">9</button>
-            <button data-key="0">0</button>
+            <button data-key="0">0</button> -->
+            <span class="key-spacer" aria-hidden="true"></span>
+            <span class="key-spacer" aria-hidden="true"></span>
 
-            <button data-key="q">Q</button>
-            <button data-key="w">W</button>
+            <button data-key="q">α--</button>
+            <button data-key="w">α++</button>
+            <span class="key-spacer" aria-hidden="true"></span>
 
-            <button data-key="-">−</button>
-            <button data-key="=">+</button>
-
-            <button data-key="[">[</button>
-            <button data-key="]">]</button>
+            <button data-key="-">β−-</button>
+            <button data-key="=">β++</button>
+            <span class="key-spacer" aria-hidden="true"></span>
+            <button data-key="[">t--</button>
+            <button data-key="]">t++</button>
         </div>
-
         <!-- INLINE SVG - content is dynamically created-->
         <svg id="curve"></svg>
 
         <!-- Overlay text -->
         <div class="overlay">
-            <div id="param-report">n=7, α=32°</div>
+            <div id="param-report"></div>
             <br />
             <a href="http://github.com/m5c">m5c</a>
         </div>
