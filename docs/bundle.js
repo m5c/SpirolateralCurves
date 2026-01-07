@@ -424,6 +424,9 @@ var require_webui = __commonJS({
       if (event.key === "r") {
         loadRandom();
       }
+      if (event.target === document.getElementById("curve")) {
+        loadRandom();
+      }
       console.log(event.key);
       if (event.key >= "0" && event.key <= "9") {
         currentParams = presets[Number.parseInt(event.key)];
