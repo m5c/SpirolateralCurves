@@ -419,6 +419,12 @@ var require_webui = __commonJS({
         render();
       }
     });
+    document.querySelectorAll(".virtual-keys button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = String(btn.getAttribute("data-key"));
+        document.dispatchEvent(new KeyboardEvent("keydown", { key }));
+      });
+    });
   }
 });
 export default require_webui();

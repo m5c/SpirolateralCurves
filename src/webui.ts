@@ -99,3 +99,11 @@ document.addEventListener("keydown", function (event) {
         render();
     }
 });
+
+document.querySelectorAll(".virtual-keys button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const key: string = String(btn.getAttribute("data-key"));
+
+        document.dispatchEvent(new KeyboardEvent("keydown", { key }));
+    });
+});
