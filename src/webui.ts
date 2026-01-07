@@ -14,11 +14,12 @@ presets.push(new CurveParams(90, 87, 8));
 presets.push(new CurveParams(44, 22, 8));
 presets.push(new CurveParams(4, 60, 1));
 presets.push(new CurveParams(280, 45, 6));
-presets.push(new CurveParams(9, 136, 15));
+presets.push(new CurveParams(9, 136, 12));
 presets.push(new CurveParams(0, 111, 1));
 presets.push(new CurveParams(0, 129, 4));
-presets.push(new CurveParams(5, 22, 30));
+presets.push(new CurveParams(5, 22, 12));
 let currentParams = presets[1];
+const maxAmount: number = 12;
 
 /**
  * This function is called on page load.
@@ -60,7 +61,7 @@ function updateParamReport(params: CurveParams) {
 function loadRandom() {
     const initialHeading = Math.floor(Math.random() * 360);
     const angle = Math.floor(Math.random() * 360);
-    const amount = Math.floor(Math.random() * 32);
+    const amount = Math.floor(Math.random() * maxAmount);
     currentParams = new CurveParams(initialHeading, angle, amount);
     render();
 }
@@ -89,7 +90,7 @@ document.addEventListener("keydown", function (event) {
         render();
     }
     if (event.key === "]") {
-        const amount = Math.min(currentParams.getAmount() + 1, 32);
+        const amount = Math.min(currentParams.getAmount() + 1, maxAmount);
         currentParams = new CurveParams(currentParams.getInitialHeading(), currentParams.getAngle(), amount);
         render();
     }
