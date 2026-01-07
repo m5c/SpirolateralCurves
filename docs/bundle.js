@@ -365,7 +365,7 @@ var require_webui = __commonJS({
     presets.push(new CurveParams(9, 136, 15));
     presets.push(new CurveParams(0, 111, 1));
     presets.push(new CurveParams(0, 129, 4));
-    presets.push(new CurveParams(5, 138, 8));
+    presets.push(new CurveParams(5, 22, 30));
     var currentParams = presets[1];
     function render() {
       const curve = generateCurve(currentParams);
@@ -378,7 +378,7 @@ var require_webui = __commonJS({
     function updateParamReport(params) {
       const paramReport = document.getElementById("param-report");
       if (paramReport) {
-        paramReport.textContent = `\u03B1=${params.getInitialHeading()}\xB0, \u03B2=${params.getAngle()}\xB0, t=${params.getAmount()}\u25CF`;
+        paramReport.textContent = `\u03B1=${params.getInitialHeading()}\xB0, \u03B2=${params.getAngle()}\xB0, t=${params.getAmount()} \u25CF`;
       }
     }
     render();
@@ -411,6 +411,13 @@ var require_webui = __commonJS({
       if (event.key === "w") {
         const initialHeading = (currentParams.getInitialHeading() + 1 + 360) % 360;
         currentParams = new CurveParams(initialHeading, currentParams.getAngle(), currentParams.getAmount());
+        render();
+      }
+      if (event.key === "r") {
+        const initialHeading = Math.floor(Math.random() * 360);
+        const angle = Math.floor(Math.random() * 360);
+        const amount = Math.floor(Math.random() * 32);
+        currentParams = new CurveParams(initialHeading, angle, amount);
         render();
       }
       console.log(event.key);

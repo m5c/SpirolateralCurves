@@ -17,7 +17,7 @@ presets.push(new CurveParams(280, 45, 6));
 presets.push(new CurveParams(9, 136, 15));
 presets.push(new CurveParams(0, 111, 1));
 presets.push(new CurveParams(0, 129, 4));
-presets.push(new CurveParams(5, 138, 8));
+presets.push(new CurveParams(5, 22, 30));
 let currentParams = presets[1];
 
 /**
@@ -50,7 +50,7 @@ function render() {
 function updateParamReport(params: CurveParams) {
     const paramReport = document.getElementById("param-report");
     if (paramReport) {
-        paramReport.textContent = `α=${params.getInitialHeading()}°, β=${params.getAngle()}°, t=${params.getAmount()}●`;
+        paramReport.textContent = `α=${params.getInitialHeading()}°, β=${params.getAngle()}°, t=${params.getAmount()} ●`;
     }
 }
 
@@ -90,6 +90,13 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "w") {
         const initialHeading = (currentParams.getInitialHeading() + 1 + 360) % 360;
         currentParams = new CurveParams(initialHeading, currentParams.getAngle(), currentParams.getAmount());
+        render();
+    }
+    if (event.key === "r") {
+        const initialHeading = Math.floor(Math.random() * 360);
+        const angle = Math.floor(Math.random() * 360);
+        const amount = Math.floor(Math.random() * 32);
+        currentParams = new CurveParams(initialHeading, angle, amount);
         render();
     }
     console.log(event.key);

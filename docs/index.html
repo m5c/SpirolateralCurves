@@ -47,7 +47,7 @@
                 display: flex;
                 position: absolute;
                 right: 12px;
-                bottom: 10px;
+                top: 10px;
                 font-size: 11px;
                 font-family: system-ui, sans-serif;
                 color: #aaa;
@@ -140,6 +140,13 @@
         </style>
     </head>
     <body>
+        <!-- Overlay text -->
+        <div class="overlay">
+            <div id="param-report"></div>
+            <br />
+            <a href="http://github.com/m5c">m5c</a>
+        </div>
+
         <div class="virtual-keys">
             <button data-key="1">1</button>
             <button data-key="2">2</button>
@@ -166,12 +173,6 @@
         <!-- INLINE SVG - content is dynamically created-->
         <svg id="curve"></svg>
 
-        <!-- Overlay text -->
-        <div class="overlay">
-            <div id="param-report"></div>
-            <br />
-            <a href="http://github.com/m5c">m5c</a>
-        </div>
         <!-- TODO: assign numbers to pretty presets, allowing rapid approaching. -->
     </body>
 </html>
