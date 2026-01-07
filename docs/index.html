@@ -82,8 +82,8 @@
                 font-size: 1rem;
                 font-weight: 600;
 
-                width: 44px;
-                height: 44px;
+                width: min(44px, 10vw); /* max 44px, shrink on small screens */
+                aspect-ratio: 1 / 1; /* keep square: height = width */
 
                 border-radius: 6px;
                 border: 1px solid #bbb;
@@ -129,7 +129,7 @@
             }
 
             .key-spacer {
-                flex: 0 0 8px; /* exact width of spacer */
+                flex: 0 0 3px; /* exact width of spacer */
             }
         </style>
     </head>
@@ -148,15 +148,15 @@
             <span class="key-spacer" aria-hidden="true"></span>
             <span class="key-spacer" aria-hidden="true"></span>
 
-            <button data-key="q">α--</button>
-            <button data-key="w">α++</button>
+            <button data-key="q">α-</button>
+            <button data-key="w">α+</button>
             <span class="key-spacer" aria-hidden="true"></span>
 
-            <button data-key="-">β−-</button>
-            <button data-key="=">β++</button>
+            <button data-key="-">β-</button>
+            <button data-key="=">β+</button>
             <span class="key-spacer" aria-hidden="true"></span>
-            <button data-key="[">t--</button>
-            <button data-key="]">t++</button>
+            <button data-key="[">t-</button>
+            <button data-key="]">t+</button>
         </div>
         <!-- INLINE SVG - content is dynamically created-->
         <svg id="curve"></svg>
