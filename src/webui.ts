@@ -8,16 +8,15 @@ import { CurveProcessor } from "./curve-processor";
 import { CurveParams } from "./curve-params";
 
 const presets: CurveParams[] = [];
-presets.push(new CurveParams(5, 130, 6));
+presets.push(new CurveParams(0, 22, 3));
+presets.push(new CurveParams(20, 135, 4));
+presets.push(new CurveParams(44, 22, 8));
+presets.push(new CurveParams(90, 87, 8));
 presets.push(new CurveParams(4, 60, 1));
-// presets.push(new CurveParams(349, 60, 32));
 presets.push(new CurveParams(280, 45, 6));
-presets.push(new CurveParams(354, 135, 4));
-presets.push(new CurveParams(0, 136, 4));
 presets.push(new CurveParams(9, 136, 15));
 presets.push(new CurveParams(0, 111, 1));
 presets.push(new CurveParams(0, 129, 4));
-presets.push(new CurveParams(345, 135, 13));
 presets.push(new CurveParams(5, 138, 8));
 let currentParams = presets[1];
 
