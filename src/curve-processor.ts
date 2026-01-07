@@ -72,7 +72,7 @@ class CurveProcessor {
      * @returns svg string representing a single line.
      */
     private wrapVertexForSvg(vertex: Vertex, totalHeight: number, gradientIndex: string): string {
-        const vertexWidth: number = 0.003 * totalHeight;
+        const vertexWidth: number = 0.003 * totalHeight * 10;
 
         let x1 = vertex.getStart().getX();
         let y1 = vertex.getStart().getY();

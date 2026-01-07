@@ -281,7 +281,7 @@ var init_curve_processor = __esm({
        * @returns svg string representing a single line.
        */
       wrapVertexForSvg(vertex, totalHeight, gradientIndex) {
-        const vertexWidth = 3e-3 * totalHeight;
+        const vertexWidth = 3e-3 * totalHeight * 10;
         let x1 = vertex.getStart().getX();
         let y1 = vertex.getStart().getY();
         let x2 = vertex.getEnd().getX();
@@ -362,11 +362,12 @@ var require_webui = __commonJS({
     presets.push(new CurveParams(44, 22, 8));
     presets.push(new CurveParams(4, 60, 1));
     presets.push(new CurveParams(280, 45, 6));
-    presets.push(new CurveParams(9, 136, 15));
+    presets.push(new CurveParams(9, 136, 12));
     presets.push(new CurveParams(0, 111, 1));
     presets.push(new CurveParams(0, 129, 4));
-    presets.push(new CurveParams(5, 22, 30));
+    presets.push(new CurveParams(5, 22, 12));
     var currentParams = presets[1];
+    var maxAmount = 12;
     function render() {
       const curve = generateCurve(currentParams);
       const curveProcessor = new CurveProcessor();
@@ -380,6 +381,13 @@ var require_webui = __commonJS({
       if (paramReport) {
         paramReport.textContent = `\u03B1=${params.getInitialHeading()}\xB0, \u03B2=${params.getAngle()}\xB0, t=${params.getAmount()} \u25CF`;
       }
+    }
+    function loadRandom() {
+      const initialHeading = Math.floor(Math.random() * 360);
+      const angle = Math.floor(Math.random() * 360);
+      const amount = Math.floor(Math.random() * maxAmount);
+      currentParams = new CurveParams(initialHeading, angle, amount);
+      render();
     }
     render();
     document.addEventListener("keydown", function(event) {
@@ -399,7 +407,7 @@ var require_webui = __commonJS({
         render();
       }
       if (event.key === "]") {
-        const amount = Math.min(currentParams.getAmount() + 1, 32);
+        const amount = Math.min(currentParams.getAmount() + 1, maxAmount);
         currentParams = new CurveParams(currentParams.getInitialHeading(), currentParams.getAngle(), amount);
         render();
       }
@@ -414,11 +422,10 @@ var require_webui = __commonJS({
         render();
       }
       if (event.key === "r") {
-        const initialHeading = Math.floor(Math.random() * 360);
-        const angle = Math.floor(Math.random() * 360);
-        const amount = Math.floor(Math.random() * 32);
-        currentParams = new CurveParams(initialHeading, angle, amount);
-        render();
+        loadRandom();
+      }
+      if (event.target === document.body) {
+        loadRandom();
       }
       console.log(event.key);
       if (event.key >= "0" && event.key <= "9") {
